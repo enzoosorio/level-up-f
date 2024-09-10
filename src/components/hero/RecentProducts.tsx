@@ -4,10 +4,10 @@ import { productos } from '@/utils/products';
 
 import { type ProductReview } from "@/types/ProductReview";
 
-
-
 export const RecentProducts = () => {
   
+  // TODO este recorte lo tengo que hacer del back. Es mejor 
+  // que traiga 3 del back a traer todos y despues hacer el corte.
   const onlyThreeProducts = productos.slice(0, 3)
 
   return (
