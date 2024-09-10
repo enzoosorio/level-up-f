@@ -1,0 +1,52 @@
+{
+    "products" : [
+        {
+            "name": "Camiseta Negra",
+            "brand": "Nike",
+            "description" : "Polera Nike comprada en USA. no la he usado para casi nada.",
+            "state": "9",
+            "itsOnSale": true,
+            "price": "120.00",
+            "discountedPrice": "90.00",
+            "seller" : "Enzo Osorio",
+            "imageUrl": "/hero/sample/polo1.png",
+            "imageAlt": "Camiseta Negra Nike"
+        },
+        {
+            "name": "Zapatillas Stan Smith",
+            "brand": "Adidas",
+            "description" : "Zapatillas adidas stan smith con boleta Original. no la he usado para casi nada.",
+            "state": "9.5",
+            "itsOnSale": false,
+            "price": "250.00",
+            "discountedPrice": "0",
+            "seller" : "Enzo Osorio",
+            "imageUrl": "/hero/sample/polo2.png",
+            "imageAlt": "Adidas stan smith"
+        },
+        {
+            "name": "Polo adidas",
+            "brand": "Adidas",
+            "description" : "Polo tye die adidas by me.",
+            "state": "8.5",
+            "itsOnSale": true,
+            "price": "80.00",
+            "discountedPrice": "40.00",
+            "seller" : "Enzo Osorio",
+            "imageUrl": "/hero/sample/polo3.png",
+            "imageAlt": "Polo adidas"
+        },
+        {
+            "name": "Zapatillas Supernova",
+            "brand": "Adidas",
+            "description" : "Zapatillas supernova usadas.",
+            "state": "7.5",
+            "itsOnSale": true,
+            "price": "150.00",
+            "discountedPrice": "100.00",
+            "seller" : "Enzo Osorio",
+            "imageUrl": "/hero/sample/polo3.png",
+            "imageAlt": "Zapatillas supernova"
+        }
+    ]
+}

@@ -9,8 +9,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        "primary-orange": "#EB4434",
+        "primary-bue": "#326299",
+        "primary-ice-color": "#CEE9ED",
+        "primary-green": "#1FC510",
+      },
+      fontFamily: {
+        onest: ["Onest Variable", "sans-serif"],
+        titan: ["Titan One", "cursive"],
+        buenard: ["Buenard", "serif"],
+        gothic: ["Didact Gothic", "sans-serif"],
+        centuryGothic: ['Century', 'serif'],
+        zenMaru: ['Zen Maru Gothic', 'sans-serif'],
+        montaga: 'Montaga , serif'
       },
     },
   },
