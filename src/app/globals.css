@@ -47,3 +47,48 @@
     transform: translateX(calc(-50% - 2rem));
   }
 }
+
+/* ---------------------------------------------------------------------------------------------- */
+
+:root {
+  --z-back: -10;
+  --z-normal: 1;
+  --z-tooltip: 10;
+  --z-fixed: 100;
+  --z-modal: 1000;
+}
+
+.home {
+  overflow: hidden;
+  position: relative;
+  background-image: url("/hero/parallax/imgparallax1.png");
+}
+
+.home__parallax {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.home__parallax-img1 {
+  background-image: url("/hero/parallax/imgparallax1.png");
+  z-index: var(--z-normal);
+}
+
+.home__parallax-img2 {
+  background-image: url("/hero/parallax/imgparallax2.png");
+  z-index: var(--z-tooltip);
+}
+
+.home__parallax-img3 {
+  background-image: url("/hero/parallax/imgparallax3.png");
+  z-index: var(--z-fixed);
+}
+
+.home__parallax-img4 {
+  background-image: url("/hero/parallax/imgparallax4.png");
+  z-index: var(--z-fixed);
+}
