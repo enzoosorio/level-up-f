@@ -1,5 +1,6 @@
+import { ProductReview } from "@/types/ProductReview";
 
-export const productos = [
+export const productos : ProductReview[] = [
     {
         "id": "20vc2nv043n403n",
         "name": "Camiseta Negraaa",
@@ -21,9 +22,9 @@ export const productos = [
         "seller": "Enzo Osorio",
         "returnPolicy": "Devoluciones aceptadas dentro de 15 días.",
         "imageUrl": "/hero/sample/polo1.png",
-        "image1": "/hero/sample/polo1.png",
-        "image2": "/hero/sample/polo1.png",
-        "image3": "/hero/sample/polo1.png",
+        "image1": "/sampleIndividualProduct/polera-adidas-vino-1.jpeg",
+        "image2": "/sampleIndividualProduct/polera-adidas-vino-2.jpeg",
+        "image3": "/sampleIndividualProduct/polera-adidas-vino-3.jpeg",
         "imageAlt": "Camiseta Negra Nike"
     },
     {
@@ -72,10 +73,10 @@ export const productos = [
         "discountedPrice": "40.00",
         "seller": "Enzo Osorio",
         "returnPolicy": "Devoluciones aceptadas dentro de 15 días.",
-        "imageUrl": "/hero/sample/Polo3.png",
-        "image1": "/hero/sample/Polo3.png",
-        "image2": "/hero/sample/Polo3.png",
-        "image3": "/hero/sample/Polo3.png",
+        "imageUrl": "/hero/sample/Polo2.png",
+        "image1": "/sampleIndividualProduct/polera-hunington-1.jpeg",
+        "image2": "/sampleIndividualProduct/polera-hunington-2.jpeg",
+        "image3": "/sampleIndividualProduct/polera-hunington-3.jpeg",
         "imageAlt": "Polo adidas"
     },
     {

@@ -1,4 +1,5 @@
 
+
 export interface ProductReview {
     id: string;
     name: string;
@@ -22,8 +23,9 @@ export interface ProductReview {
     seller? : string;
     returnPolicy? : string;
     imageUrl: string;
-    image1? : string;
-    image2? : string;
-    image3?: string;
+    image1 : string  ;
+    image2 : string;
+    image3: string;
+    soldOut? : boolean;
     imageAlt: string;
   }

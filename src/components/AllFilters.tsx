@@ -46,7 +46,7 @@ export const AllFilters = () => {
       ></div>
       <div
         className={`filtersContainer absolute top-[-40px] z-50 ${
-          paramValue ? 'right-0' : '-right-80'
+          paramValue ? 'right-0' : 'right-[-1000px]'
         } max-w-96 w-56 bg-primary-ice-color text-primary-blue font-buenard h-screen p-4 flex-col items-center justify-start pt-10 gap-8 transition-all duration-300`}
       >
         <h2 className="text-xl">Filtros</h2>

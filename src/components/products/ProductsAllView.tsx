@@ -155,6 +155,8 @@ export const ProductsAllView = () => {
             onClick={() => {
               handleFilters('true')
               document.body.classList.add('overflow-hidden')
+              if(typeof window !== 'undefined')
+              window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             className="allFiltersLi hover:font-bold transition-all flex flex-row items-center justify-center gap-2 cursor-pointer"
           >

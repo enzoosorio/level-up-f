@@ -16,8 +16,8 @@ export default function ProductsLayout({
 
 
   return (
-        <main className={``}>
-          <AllFilters/>
+    <main className="mt-8 xl:max-w-[1200px] mx-auto relative">
+          
         {children}
         </main>
         
