@@ -3,11 +3,10 @@ import { CardProductsHero } from "@/components/hero/CardProductsHero";
 import { InfiniteCarousel } from "@/components/hero/InfiniteCarousel";
 import { ParallaxEffect } from "@/components/hero/ParallaxEffect";
 import { RecentProducts } from "@/components/hero/RecentProducts";
-import Image from "next/image";
 
 export default function Home() {
   return (
-    <section>
+    <main className="mt-8 xl:max-w-[1200px] mx-auto relative">
     <header className="w-11/12 mx-auto">
        <h3 className="font-buenard text-center mt-4 text-lg">
       Oportunidad para darle una segunda oportunidad a las prendas que no han
@@ -24,6 +23,6 @@ export default function Home() {
     <ParallaxEffect />
     <RecentProducts />
     <Adding />
-    </section>
+    </main>
   );
 }
