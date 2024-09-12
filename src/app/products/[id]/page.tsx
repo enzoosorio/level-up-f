@@ -14,10 +14,14 @@ function IndividualProduct() {
   const zoomedImageRef : RefObject<HTMLImageElement> = useRef(null)
   const wrapperMainPhotoRef : RefObject<HTMLPictureElement> = useRef(null)
   const wrapperZoomPhotoRef : RefObject<HTMLDivElement> = useRef(null)
-
+  
   // esto se debe mejorar... Se debe hacer con una peticion await
   const individualProduct =  productos.find(producto => id === producto.id)
-  
+  let discountedPrice = 0;
+
+  if(individualProduct?.discountedPrice) 
+    discountedPrice = parseFloat(individualProduct?.discountedPrice);
+
   console.log(individualProduct)
 
   useEffect(() => {
@@ -81,7 +85,7 @@ function IndividualProduct() {
     <section
     className="relative flex flex-row gap-4 items-center justify-around border border-gray-600/45 w-full shadow-lg shadow-gray-500/65 rounded-md px-2 py-8 mb-10"
   >
-    <div className="flex flex-row gap-4 items-start">
+    <div className="relative flex flex-row gap-4 items-start">
       <ul 
       ref={thumbnailRef}
       className="flex flex-col gap-4 items-center mr-10 h-full">
@@ -113,7 +117,7 @@ function IndividualProduct() {
 
       <picture
       ref={wrapperMainPhotoRef}
-        className="pictureMainPhoto bg-red-300 w-max flex flex-col items-center justify-center"
+        className="pictureMainPhoto  w-max flex flex-col items-center justify-center mb-4"
       >
         <img
         ref={imageMainPhotoRef}
@@ -122,11 +126,9 @@ function IndividualProduct() {
           width={400}
           className={"hover:cursor-zoom-in group/mainPicture "}
         />
-        {/* <h2 className="pl-2 w-full text-pretty text-sm md:text-base">
-            {"Camiseta Negraaa"}
-          </h2>
-          <p className="pl-2 w-full text-sm md:text-base">S/{"120.00"}</p> */}
+        
       </picture>
+      <span className='absolute -bottom-4 left-[11rem] w-max text-xs font-bold text-gray-600/80 mt-4 font-onest'>Mueve el mouse sobre la imagen para zoom.</span>
     </div>
     <div
       className="flex flex-col items-center gap-8 w-96 font-buenard border p-4 rounded-sm"
@@ -138,13 +140,20 @@ function IndividualProduct() {
       <p className="pl-2 w-full text-sm md:text-lg italic font-serif">
         {`“${individualProduct?.description}“`}
       </p>
+      {individualProduct?.referenceURL && 
+      <a href={individualProduct.referenceURL} target='_blank' rel='noopener noreferrer' className="pl-2 w-full text-sm md:text-lg underline font-titan text-primary-bue hover:drop-shadow-xl   transition-all">
+      Referencia del producto
+    </a>}
       <p className="pl-2 w-full text-sm md:text-xl">
         Publicado por: <span className="text-primary-bue font-bold font-buenard"
           
           // TODO : se debe extraer el nombre del seller debido a su producto ID.
           >{"Juan Perez"}</span> 
       </p>
-      <p className="pl-2 w-full text-sm md:text-xl">S/{individualProduct?.price}</p>
+      <p className="pl-2 w-full text-sm md:text-xl flex flex-row items-center"> 
+        <span className={`${discountedPrice ? 'line-through stroke-red-600 line-through-red' : 'text-2xl font-bold'} mr-4`}>S/{individualProduct?.price} </span> 
+      {discountedPrice !== 0 && <span className='text-primary-green font-bold text-2xl'>{`S/${individualProduct?.discountedPrice}`}</span>}
+       </p>
       <button
         className="bg-primary-green text-white rounded-lg px-7 py-2 hover:shadow-xl shadow-white transition-all hover:font-bold  flex flex-row items-center gap-2"
       >

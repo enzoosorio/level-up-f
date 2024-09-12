@@ -1,21 +1,20 @@
 "use client";
 
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { productos } from "@/utils/products";
 import { useOutsideClick } from "@/utils/clickOutside";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export const ProductsAllView = () => {
-  const [toggleDropdownvalue, setToggleDropdownvalue] = useState(-1);
+  const [toggleDropdownvalue, setToggleDropdownvalue] = useState(0);
 
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
-
   const liRef = useOutsideClick(() => {
-    if (toggleDropdownvalue !== -1) {
-      setToggleDropdownvalue(-1);
+    if (toggleDropdownvalue !== 0) {
+      setToggleDropdownvalue(0);
     }
   });
 
@@ -66,12 +65,10 @@ export const ProductsAllView = () => {
     },
   ];
 
-  const toggleDropdown = (dropdown: number) => {
-    if (dropdown === toggleDropdownvalue) {
-      setToggleDropdownvalue(-1);
-    }
 
-    setToggleDropdownvalue(dropdown);
+  const toggleDropdown = (dropdown: number) => {
+    setToggleDropdownvalue((prev) => (prev === dropdown ? 0 : dropdown));
+
   };
 
   function handleFilters(term: any) {
@@ -94,7 +91,7 @@ export const ProductsAllView = () => {
           {SOME_FILTERS.map((filter, index) => (
             <li
               key={index}
-              onClick={() => toggleDropdown(index)}
+              onClick={() => toggleDropdown(index + 1)}
               ref={liRef}
               className="someFilters relative transition-all cursor-pointer"
             >
@@ -114,10 +111,10 @@ export const ProductsAllView = () => {
               </span>
               <ul
                 className={`${
-                  toggleDropdownvalue === index ? "block" : "hidden"
+                  toggleDropdownvalue === index + 1 ? "block" : "hidden"
                 } absolute top-9 left-0 z-40 w-52 max-h-96 bg-white border rounded-sm p-2 pl-4 gap-6`}
               >
-                {filter?.subFilterMethods &&
+                {filter?.subFilterMethods && 
                   filter.subFilterMethods.map((subfilterMethod, idx) => (
                     <li
                       key={idx}

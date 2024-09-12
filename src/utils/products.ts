@@ -20,6 +20,7 @@ export const productos : ProductReview[] = [
         "price": "120.00",
         "discountedPrice": "90.00",
         "seller": "Enzo Osorio",
+        "referenceURL" : "https://www.adidas.pe/polo-adicolor-seleccion-peruana/IU2741.html",
         "returnPolicy": "Devoluciones aceptadas dentro de 15 días.",
         "imageUrl": "/hero/sample/polo1.png",
         "image1": "/sampleIndividualProduct/polera-adidas-vino-1.jpeg",
