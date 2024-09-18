@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { PriceFilter } from './partOfComponents/filters/PriceFilter';
+import { SpecificFilter } from './partOfComponents/filters/SpecificFilter';
 
 interface AllFiltersProps {
   name : string,
@@ -55,8 +57,8 @@ export const AllFilters = () => {
       ></div>
       <div
         className={`filtersContainer absolute top-[-40px] z-50 ${
-          paramValue ? 'right-0' : 'right-[-1000px]'
-        } max-w-96 w-56 bg-primary-ice-color text-primary-bue font-buenard h-screen p-4 flex flex-col items-center justify-start pt-10 gap-6 transition-all duration-300`}
+          paramValue ? 'right-0 z-[999999999999999999]' : 'right-[-1000px]'
+        } max-w-96 w-56 bg-white text-primary-bue font-buenard h-screen p-4 flex flex-col items-center justify-start pt-10 gap-6 transition-all duration-300`}
       >
         <h2 className="text-xl">Filtros</h2>
         {contentFilterAsObject === null ? 
@@ -82,14 +84,18 @@ export const AllFilters = () => {
             </li>
           ))}
         </ul>
-        ) : 
+        ) :        
         (
           <div
-          className={`flex flex-col items-start gap-10`}
+          className={`flex flex-col items-start gap-10 relative  w-full `}
         >
-          <button onClick={() => setContentFilterAsObject(null)}>Regresar</button>
-          <p>Contenido de {contentFilterAsObject.name}</p>
-          <p>id : {contentFilterAsObject.id}</p>
+          <button 
+          onClick={() => setContentFilterAsObject(null)}
+          className='absolute -top-12 left-0'   
+            >
+          <svg width="24" height="24" viewBox="0 0 24 24" className='fill-primary-bue'><path d="m7.825 13l4.9 4.9q.3.3.288.7t-.313.7q-.3.275-.7.288t-.7-.288l-6.6-6.6q-.15-.15-.213-.325T4.426 12t.063-.375t.212-.325l6.6-6.6q.275-.275.688-.275t.712.275q.3.3.3.713t-.3.712L7.825 11H19q.425 0 .713.288T20 12t-.288.713T19 13z"/></svg>
+          </button>
+          <SpecificFilter id={contentFilterAsObject.id} />
         </div>
         )
         }

@@ -85,7 +85,7 @@ export const ProductsAllView = () => {
 
   return (
     <section className={`relative w-11/12 md:w-full 2xl:w-[1080px] mx-auto grid grid-cols-2 items-center justify-center gap-3 `}>
-      <div className="relative flex flex-row justify-between px-4 items-center col-span-2 w-full rounded-lg font-buenard mx-auto">
+      <div className="relative flex flex-row justify-between px-2 md:px-12 items-center col-span-2 w-full rounded-lg font-buenard mx-auto">
         <h3 className="text-2xl">Filtros:</h3>
         <ul className="flex flex-row justify-center items-center gap-4 bg-gray-300/60 rounded-lg p-3">
           {SOME_FILTERS.map((filter, index) => (
@@ -93,7 +93,7 @@ export const ProductsAllView = () => {
               key={index}
               onClick={() => toggleDropdown(index + 1)}
               ref={liRef}
-              className="someFilters relative transition-all cursor-pointer"
+              className="hidden md:block someFilters relative transition-all cursor-pointer"
             >
               <span className="hover:font-bold flex flex-row items-center justify-center gap-2">
                 {filter.nameFilter}

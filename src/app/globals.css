@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --form-control-color: #2C689C;
+}
+
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
 .carousel-container {
   max-width: 100%;
   margin-inline: auto;
@@ -97,4 +106,160 @@
 }
 .hidden {
   display: none;
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+
+input[type=range] {
+  height: 18px;
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 100%;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000;
+  background: #2C689C;
+  border-radius: 12px;
+  border: 0px solid #000000;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 0px 0px 2px #000000;
+  border: 0px solid #FFFFFF;
+  height: 12px;
+  width: 10px;
+  border-radius: 8px;
+  background: #E0F7FF;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -4px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #2C689C;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000;
+  background: #2C689C;
+  border-radius: 12px;
+  border: 0px solid #000000;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0px 0px 2px #000000;
+  border: 0px solid #FFFFFF;
+  height: 12px;
+  width: 10px;
+  border-radius: 8px;
+  background: #E0F7FF;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #2C689C;
+  border: 0px solid #000000;
+  border-radius: 24px;
+  box-shadow: 0px 0px 0px #000000;
+}
+input[type=range]::-ms-fill-upper {
+  background: #2C689C;
+  border: 0px solid #000000;
+  border-radius: 24px;
+  box-shadow: 0px 0px 0px #000000;
+}
+input[type=range]::-ms-thumb {
+  margin-top: 1px;
+  box-shadow: 0px 0px 2px #000000;
+  border: 0px solid #FFFFFF;
+  height: 12px;
+  width: 10px;
+  border-radius: 8px;
+  background: #E0F7FF;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #2C689C;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #2C689C;
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+
+input[type="radio"] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  /* Remove most all native input styles */
+  appearance: none;
+  /* For iOS < 15 */
+  background-color: var(--form-background , transparent);
+  /* Not removed via appearance */
+  margin: 0;
+
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid currentColor;
+  border-radius: 50%;
+  transform: translateY(-0.075em);
+
+  display: grid;
+  place-content: center;
+}
+
+
+input[type="radio"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--form-control-color);
+  /* Windows High Contrast Mode */
+  background-color: CanvasText;
+}
+
+input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+
+/* -------------------------------------------------------------- */
+
+.homeClose{
+  clip-path: circle(1px at 50% 3.5rem);
+}
+
+.homeOpen{
+  clip-path: circle(100% at 50% 50%);
+}
+
+.buttonHome:hover{
+  animation: rotate 1.3s alternate;
+}
+
+@keyframes rotate{
+  0%{ transform: rotate(0deg);}
+  20%{ transform: rotate(10deg);}
+  40%{ transform: rotate(-15deg);}
+  60%{ transform: rotate(15deg);}
+  80%{ transform: rotate(-15deg);}
+  100%{ transform: rotate(0deg);}
 }
