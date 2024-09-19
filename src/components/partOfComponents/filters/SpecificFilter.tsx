@@ -1,5 +1,5 @@
 import React from 'react'
-import { PriceFilter } from './PriceFilter'
+import { PriceFilterOfInternet } from './PriceFilter'
 import { GenderFilter } from './GenderFilter'
 import { ProductTypeFilter } from './ProductTypeFilter'
 import { ColorFilter } from './ColorFilter'
@@ -13,7 +13,7 @@ interface SpecificFilterProps{
 export const SpecificFilter = ({id} : SpecificFilterProps) => {
   return (
     <>
-    {id === 'PriceRange' ? <PriceFilter/> : 
+    {id === 'PriceRange' ? <PriceFilterOfInternet/> : 
     id === 'Gender' ? <GenderFilter/> : 
     id === 'ProductType' ? <ProductTypeFilter/> : 
     id === 'Color' ? <ColorFilter/> : 

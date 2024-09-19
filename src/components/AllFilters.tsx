@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { PriceFilter } from './partOfComponents/filters/PriceFilter';
 import { SpecificFilter } from './partOfComponents/filters/SpecificFilter';
+import { roboto } from '@/utils/fonts';
 
 interface AllFiltersProps {
   name : string,
@@ -56,11 +56,11 @@ export const AllFilters = () => {
         }}
       ></div>
       <div
-        className={`filtersContainer absolute top-[-40px] z-50 ${
+        className={`filtersContainer ${roboto.className} absolute top-[-40px] z-50 ${
           paramValue ? 'right-0 z-[999999999999999999]' : 'right-[-1000px]'
         } max-w-96 w-56 bg-white text-primary-bue font-buenard h-screen p-4 flex flex-col items-center justify-start pt-10 gap-6 transition-all duration-300`}
       >
-        <h2 className="text-xl">Filtros</h2>
+        <h2 className={`text-xl`}>Filtros</h2>
         {contentFilterAsObject === null ? 
         (
           <ul className="filtersWrapper flex flex-col items-start gap-10">
