@@ -21,12 +21,13 @@ export const AllFilters = () => {
   });
 
   const ALL_FILTERS = [
+    { name: "Ordenar por", id: "OrderBy" },
     { name: "Rango de Precios", id: "PriceRange" },
-    { name: "Sexo", id: "Gender" },
+    { name: "Género", id: "Gender" },
     { name: "Tipo de producto", id: "ProductType" },
-    { name: "Colores", id: "Color" },
-    { name: "Estado", id: "Condition" },
-    { name: "Tipo de venta", id: "SaleType" },
+    { name: "Talla", id: "Tallaje" },
+    { name: "Condición", id: "Condition" },
+    { name: "TAGS", id: "Tags" },
   ];
 
   useEffect(() => {
@@ -56,8 +57,8 @@ export const AllFilters = () => {
         }}
       ></div>
       <div
-        className={`filtersContainer ${roboto.className} absolute top-[-40px] z-50 ${
-          paramValue ? 'right-0 z-[999999999999999999]' : 'right-[-1000px]'
+        className={` filtersContainer overflow-y-auto ${roboto.className} absolute top-[-40px] right-0 z-50 ${
+          paramValue ? 'right-0 z-[999999999999999999]' : 'right-[-1000px] '
         } max-w-96 w-56 bg-white text-primary-bue font-buenard h-screen p-4 flex flex-col items-center justify-start pt-10 gap-6 transition-all duration-300`}
       >
         <h2 className={`text-xl`}>Filtros</h2>

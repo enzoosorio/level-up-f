@@ -2,9 +2,11 @@ import React from 'react'
 import { PriceFilterOfInternet } from './PriceFilter'
 import { GenderFilter } from './GenderFilter'
 import { ProductTypeFilter } from './ProductTypeFilter'
-import { ColorFilter } from './ColorFilter'
+import { TallajeFilter } from './TallajeFilter'
 import { ConditionFilter } from './ConditionFilter'
-import { SaleTypeFilter } from './SaleTypeFilter'
+import { TagsFilter } from './TagsFilter'
+import { OrderByFilter } from './OrderByFilter'
+
 
 interface SpecificFilterProps{
     id : string
@@ -13,12 +15,14 @@ interface SpecificFilterProps{
 export const SpecificFilter = ({id} : SpecificFilterProps) => {
   return (
     <>
-    {id === 'PriceRange' ? <PriceFilterOfInternet/> : 
+    {
+    id === 'OrderBy' ? <OrderByFilter/> : 
+    id === 'PriceRange' ? <PriceFilterOfInternet/> : 
     id === 'Gender' ? <GenderFilter/> : 
     id === 'ProductType' ? <ProductTypeFilter/> : 
-    id === 'Color' ? <ColorFilter/> : 
+    id === 'Tallaje' ? <TallajeFilter/> : 
     id === 'Condition' ? <ConditionFilter/> :
-    id === 'SaleType' ? <SaleTypeFilter/> : <></> }
+    id === 'Tags' ? <TagsFilter/> : <></> }
     </>
   )
 }

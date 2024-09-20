@@ -14,7 +14,16 @@ Atributos Actuales
 
 # state: Estado del producto en una escala (por ejemplo, del 1 al 10).
 
+// condicion diferente de estado eh...
+
 # condition: (En lugar de o además de state) Podrías tener un atributo que describa el estado del producto de manera más específica, como new, used, refurbished, etc.
+
+-> const conditionFilter = [
+'Nuevo',
+'Perfecto estado',
+'Semi nuevo',
+'Usado'
+]
 
 # stockQuantity: Cantidad de stock disponible para el producto. Es importante para controlar las ventas y evitar que los usuarios compren productos que ya no están disponibles.
 
