@@ -16,8 +16,7 @@ export default function ProductsLayout({
 
 
   return (
-    <main className="mt-8 xl:max-w-[1200px] mx-auto relative overflow-x-hidden ">
-          
+    <main className="mt-8 xl:max-w-[1200px] mx-auto relative overflow-x-hidden "> 
         {children}
         </main>
         

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { SpecificFilter } from './partOfComponents/filters/SpecificFilter';
 import { roboto } from '@/utils/fonts';
@@ -11,6 +11,11 @@ interface AllFiltersProps {
 }
 
 export const AllFilters = () => {
+
+  if (typeof window === 'undefined') {
+    return null; // Evita usar useSearchParams durante el prerenderizado
+  }
+
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -30,13 +35,10 @@ export const AllFilters = () => {
     { name: "TAGS", id: "Tags" },
   ];
 
-  useEffect(() => {
-    console.log({ paramValue });
-  }, [paramValue]);
 
-  function handleFiltersAllFilters(term: null) {
+  function handleFiltersAllFilters(term: string) {
     const params = new URLSearchParams(searchParams);
-    if (term) {
+    if (term && term !== '') {
       params.set('showFilters', term);
     } else {
       params.delete('showFilters');
@@ -52,7 +54,7 @@ export const AllFilters = () => {
           paramValue ? 'block' : 'hidden'
         }`}
         onClick={() => {
-          handleFiltersAllFilters(null);
+          handleFiltersAllFilters('');
           document.body.classList.remove('overflow-hidden')
         }}
       ></div>

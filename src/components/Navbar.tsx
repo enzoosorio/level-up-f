@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 
-export const Navbar = () => {
-  const searchParams = useSearchParams();
-  const showFiltersState = searchParams.get("showFilters")?.toString();
+interface NavbarProps {
+  showFilters : string;
+}
 
+export const Navbar = ({showFilters} : NavbarProps) => {
+  
   const [homeOpen, setHomeOpen] = useState(false);
 
   const toggleHomeOpen = () => {
@@ -71,7 +72,7 @@ export const Navbar = () => {
         <button
           onClick={toggleHomeOpen}
           className={`bg-primary-orange buttonHome w-max p-3 md:hidden mb-2 ${
-            showFiltersState === "true" ? "z-0" : "z-[9999999999]"
+            showFilters && showFilters === "true" ? "z-0" : "z-[9999999999]"
           } rounded-full  ${
             homeOpen ? "bg-primary-bue" : "bg-primary-orange"
           } `}

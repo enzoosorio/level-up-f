@@ -8,6 +8,10 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 export const ProductsAllView = () => {
   const [toggleDropdownvalue, setToggleDropdownvalue] = useState<number>(0);
 
+  if (typeof window === 'undefined') {
+    return null; // Evita usar useSearchParams durante el prerenderizado
+  }
+
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -73,7 +77,7 @@ export const ProductsAllView = () => {
 
   function handleFilters(term: string) {
     const params = new URLSearchParams(searchParams);
-    if (term) {
+    if (term && term!== '') {
       params.set('showFilters', term);
     } else {
       params.delete('showFilters');

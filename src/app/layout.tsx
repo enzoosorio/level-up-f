@@ -24,18 +24,24 @@ export const metadata: Metadata = {
     COMPRA LAS ZAPATILLAS QUE HAS ESTADO ESPERANDO AL MEJOR PRECIO. LUCE UNA PRENDA QUE OTRO NO PUDO DARLE LA OPORTUNIDAD.`,
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+interface RootLayoutProps {
+  children : React.ReactNode,
+  searchParams? : {
+    showFilters? : string
+  }
+}
+
+export default function RootLayout({children, searchParams} : RootLayoutProps) {
+
+  const showFilters = searchParams?.showFilters || '';
+
   return (
     <html lang="en">
       <body
         className={`relative ${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
         <Suspense fallback={<p>Loading...</p>}>
-          <Navbar />
+          <Navbar showFilters={showFilters} />
         </Suspense>
         {children}
         <Footer />
