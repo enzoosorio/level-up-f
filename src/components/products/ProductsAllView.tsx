@@ -8,13 +8,14 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 export const ProductsAllView = () => {
   const [toggleDropdownvalue, setToggleDropdownvalue] = useState<number>(0);
 
-  if (typeof window === 'undefined') {
-    return null; // Evita usar useSearchParams durante el prerenderizado
-  }
-
+  
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
+
+  if (typeof window === 'undefined') {
+    return null; // Evita usar useSearchParams durante el prerenderizado
+  }
 
   const liRef = useOutsideClick(() => {
     if (toggleDropdownvalue !== 0) {

@@ -11,14 +11,16 @@ interface AllFiltersProps {
 }
 
 export const AllFilters = () => {
-
+  
+  
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+  
   if (typeof window === 'undefined') {
     return null; // Evita usar useSearchParams durante el prerenderizado
   }
 
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const { replace } = useRouter();
   const paramValue = searchParams.get('showFilters')?.toString();
   const [contentFilterAsObject, setContentFilterAsObject] = useState<AllFiltersProps | null>({
     id : '',
