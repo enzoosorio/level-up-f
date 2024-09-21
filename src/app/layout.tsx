@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { AllFilters } from "@/components/AllFilters";
+import { Suspense } from "react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -33,10 +34,14 @@ export default function RootLayout({
       <body
         className={`relative ${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
-        <Navbar />
+        <Suspense fallback={<p>Loading...</p>}>
+          <Navbar />
+        </Suspense>
         {children}
         <Footer />
-        <AllFilters />
+        <Suspense fallback={<p>Loading...</p>}>
+          <AllFilters />
+        </Suspense>
       </body>
     </html>
   );
