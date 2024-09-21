@@ -12,16 +12,17 @@ export const ProductsAllView = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
-
-  if (typeof window === 'undefined') {
-    return null; // Evita usar useSearchParams durante el prerenderizado
-  }
-
+  
   const liRef = useOutsideClick(() => {
     if (toggleDropdownvalue !== 0) {
       setToggleDropdownvalue(0);
     }
   });
+  
+  if (typeof window === 'undefined') {
+    return null; // Evita usar useSearchParams durante el prerenderizado
+  }
+
 
   const SOME_FILTERS = [
     {

@@ -16,16 +16,16 @@ export const AllFilters = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
+  const [contentFilterAsObject, setContentFilterAsObject] = useState<AllFiltersProps | null>({
+    id : '',
+    name : ''
+  });
   
   if (typeof window === 'undefined') {
     return null; // Evita usar useSearchParams durante el prerenderizado
   }
 
   const paramValue = searchParams.get('showFilters')?.toString();
-  const [contentFilterAsObject, setContentFilterAsObject] = useState<AllFiltersProps | null>({
-    id : '',
-    name : ''
-  });
 
   const ALL_FILTERS = [
     { name: "Ordenar por", id: "OrderBy" },
