@@ -8,7 +8,6 @@ import { useShowFilters } from "@/utils/useShowFilters";
 export const ProductsAllView = () => {
   const [toggleDropdownvalue, setToggleDropdownvalue] = useState<number>(0);
 
-  const allFilters = useShowFilters((state) => state.allFilters)
   const showAllFilters = useShowFilters((state) => state.showAllFilters) 
   
   const liRef = useOutsideClick(() => {
