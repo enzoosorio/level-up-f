@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState} from "react";
+import React, { useEffect, useState} from "react";
 import { productos } from "@/utils/products";
 import { useOutsideClick } from "@/utils/clickOutside";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -19,8 +19,15 @@ export const ProductsAllView = () => {
     }
   });
   
-  if (typeof window === 'undefined') {
-    return null; // Evita usar useSearchParams durante el prerenderizado
+  const [isClient, setIsClient] = useState(false);
+
+  // Solo ejecuta la lógica cuando estamos en el cliente
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null; // No renderiza nada hasta que estamos en el cliente
   }
 
 

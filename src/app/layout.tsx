@@ -19,35 +19,36 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "LEVEL UP",
-  description:
-    `COMPRA Y VENTA DE ROPA, ZAPATILLAS Y ACCESORIOS DE PRIMERA Y SEGUNDA MANO. ARTÍCULOS ORIGINALES. 
+  description: `COMPRA Y VENTA DE ROPA, ZAPATILLAS Y ACCESORIOS DE PRIMERA Y SEGUNDA MANO. ARTÍCULOS ORIGINALES. 
     COMPRA LAS ZAPATILLAS QUE HAS ESTADO ESPERANDO AL MEJOR PRECIO. LUCE UNA PRENDA QUE OTRO NO PUDO DARLE LA OPORTUNIDAD.`,
 };
 
 interface RootLayoutProps {
-  children : React.ReactNode,
-  searchParams? : {
-    showFilters? : string
-  }
+  children: React.ReactNode;
+  searchParams?: {
+    showFilters?: string;
+  };
 }
 
-export default function RootLayout({children, searchParams} : RootLayoutProps) {
-
-  const showFilters = searchParams?.showFilters || '';
+export default function RootLayout({
+  children,
+  searchParams,
+}: RootLayoutProps) {
+  const showFilters = searchParams?.showFilters || "";
 
   return (
     <html lang="en">
       <body
         className={`relative ${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
-        <Suspense fallback={<p>Loading...</p>}>
+  
           <Navbar showFilters={showFilters} />
-        </Suspense>
+        
         {children}
         <Footer />
-        <Suspense fallback={<p>Loading...</p>}>
+        
           <AllFilters />
-        </Suspense>
+        
       </body>
     </html>
   );

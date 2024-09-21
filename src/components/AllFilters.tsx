@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { SpecificFilter } from './partOfComponents/filters/SpecificFilter';
 import { roboto } from '@/utils/fonts';
@@ -21,8 +21,15 @@ export const AllFilters = () => {
     name : ''
   });
   
-  if (typeof window === 'undefined') {
-    return null; // Evita usar useSearchParams durante el prerenderizado
+  const [isClient, setIsClient] = useState(false);
+
+  // Solo ejecuta la lógica cuando estamos en el cliente
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null; // No renderiza nada hasta que estamos en el cliente
   }
 
   const paramValue = searchParams.get('showFilters')?.toString();
