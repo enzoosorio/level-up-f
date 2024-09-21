@@ -24,28 +24,21 @@ export const metadata: Metadata = {
 
 interface RootLayoutProps {
   children: React.ReactNode;
-  searchParams?: {
-    showFilters?: string;
-  };
 }
 
 export default function RootLayout({
   children,
-  searchParams,
 }: RootLayoutProps) {
-  const showFilters = searchParams?.showFilters || "";
 
   return (
     <html lang="en">
       <body
         className={`relative ${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
-  
-          <Navbar showFilters={showFilters} />
-        
+          <Navbar />
         {children}
         <Footer />
-        
+        {/* cambiar el useSearchParams por estado global. */}
           <AllFilters />
         
       </body>

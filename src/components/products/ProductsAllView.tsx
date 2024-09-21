@@ -1,17 +1,15 @@
 "use client";
 
-import React, { useEffect, useState} from "react";
+import React, { useState} from "react";
 import { productos } from "@/utils/products";
 import { useOutsideClick } from "@/utils/clickOutside";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useShowFilters } from "@/utils/useShowFilters";
 
 export const ProductsAllView = () => {
   const [toggleDropdownvalue, setToggleDropdownvalue] = useState<number>(0);
 
-  
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const { replace } = useRouter();
+  const allFilters = useShowFilters((state) => state.allFilters)
+  const showAllFilters = useShowFilters((state) => state.showAllFilters) 
   
   const liRef = useOutsideClick(() => {
     if (toggleDropdownvalue !== 0) {
@@ -19,17 +17,6 @@ export const ProductsAllView = () => {
     }
   });
   
-  const [isClient, setIsClient] = useState(false);
-
-  // Solo ejecuta la lógica cuando estamos en el cliente
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return null; // No renderiza nada hasta que estamos en el cliente
-  }
-
 
   const SOME_FILTERS = [
     {
@@ -83,18 +70,6 @@ export const ProductsAllView = () => {
     setToggleDropdownvalue((prev) => (prev === dropdown ? 0 : dropdown));
 
   };
-
-  function handleFilters(term: string) {
-    const params = new URLSearchParams(searchParams);
-    if (term && term!== '') {
-      params.set('showFilters', term);
-    } else {
-      params.delete('showFilters');
-    }
-
-    replace(`${pathname}?${params.toString()}`);
-
-  }
 
   return (
     <section className={`relative w-11/12 md:w-full 2xl:w-[1080px] mx-auto grid grid-cols-2 items-center justify-center gap-3 overflow-y-hidden pb-6 `}>
@@ -163,7 +138,7 @@ export const ProductsAllView = () => {
           ))}
           <li
             onClick={() => {
-              handleFilters('true')
+              showAllFilters()
               document.body.classList.add('overflow-hidden')
               if(typeof window !== 'undefined')
               window.scrollTo({ top: 0, behavior: 'smooth' });

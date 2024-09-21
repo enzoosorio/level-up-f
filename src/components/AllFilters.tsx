@@ -1,9 +1,9 @@
 'use client'
 
-import React, { useEffect, useState } from 'react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import React, {  useState } from 'react';
 import { SpecificFilter } from './partOfComponents/filters/SpecificFilter';
 import { roboto } from '@/utils/fonts';
+import { useShowFilters } from '@/utils/useShowFilters';
 
 interface AllFiltersProps {
   name : string,
@@ -12,27 +12,13 @@ interface AllFiltersProps {
 
 export const AllFilters = () => {
   
-  
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const { replace } = useRouter();
+  const allFilters = useShowFilters((state) => state.allFilters)
+  const showAllFilters = useShowFilters((state) => state.showAllFilters)    
+ 
   const [contentFilterAsObject, setContentFilterAsObject] = useState<AllFiltersProps | null>({
     id : '',
     name : ''
   });
-  
-  const [isClient, setIsClient] = useState(false);
-
-  // Solo ejecuta la lógica cuando estamos en el cliente
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return null; // No renderiza nada hasta que estamos en el cliente
-  }
-
-  const paramValue = searchParams.get('showFilters')?.toString();
 
   const ALL_FILTERS = [
     { name: "Ordenar por", id: "OrderBy" },
@@ -45,31 +31,20 @@ export const AllFilters = () => {
   ];
 
 
-  function handleFiltersAllFilters(term: string) {
-    const params = new URLSearchParams(searchParams);
-    if (term && term !== '') {
-      params.set('showFilters', term);
-    } else {
-      params.delete('showFilters');
-    }
-
-    replace(`${pathname}?${params.toString()}`);
-  }
-
   return (
     <>
       <div
         className={`grayLayer fixed inset-0 bg-gray-900/30 z-40 ${
-          paramValue ? 'block' : 'hidden'
+          allFilters ? 'block' : 'hidden'
         }`}
         onClick={() => {
-          handleFiltersAllFilters('');
+          showAllFilters();
           document.body.classList.remove('overflow-hidden')
         }}
       ></div>
       <div
         className={` filtersContainer overflow-y-auto ${roboto.className} absolute top-[-40px] right-0 z-50 ${
-          paramValue ? 'right-0 z-[999999999999999999]' : 'right-[-1000px] '
+          allFilters ? 'right-0 z-[999999999999999999] block' : 'right-[-1000px] hidden md:block '
         } max-w-96 w-56 bg-white text-primary-bue font-buenard h-screen p-4 flex flex-col items-center justify-start pt-10 gap-6 transition-all duration-300`}
       >
         <h2 className={`text-xl`}>Filtros</h2>

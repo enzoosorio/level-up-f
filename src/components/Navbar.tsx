@@ -1,14 +1,13 @@
 "use client";
 
+import { useShowFilters } from "@/utils/useShowFilters";
 import Link from "next/link";
 import React, { useState } from "react";
 
-interface NavbarProps {
-  showFilters : string;
-}
 
-export const Navbar = ({showFilters} : NavbarProps) => {
+export const Navbar = () => {
   
+  const allFilters = useShowFilters((state) => state.allFilters)
   const [homeOpen, setHomeOpen] = useState(false);
 
   const toggleHomeOpen = () => {
@@ -72,7 +71,7 @@ export const Navbar = ({showFilters} : NavbarProps) => {
         <button
           onClick={toggleHomeOpen}
           className={`bg-primary-orange buttonHome w-max p-3 md:hidden mb-2 ${
-            showFilters && showFilters === "true" ? "z-0" : "z-[9999999999]"
+            allFilters ? "z-0" : "z-[9999999999]"
           } rounded-full  ${
             homeOpen ? "bg-primary-bue" : "bg-primary-orange"
           } `}
