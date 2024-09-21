@@ -1,6 +1,5 @@
 import { poppins } from '@/utils/fonts'
-import React, { useEffect, useState } from 'react'
-import { useOutsideClick } from '@/utils/clickOutside';
+import React, {  useState } from 'react'
 
 
 export const ProductTypeFilter = () => {

@@ -34,7 +34,7 @@ export const AllFilters = () => {
     console.log({ paramValue });
   }, [paramValue]);
 
-  function handleFilters(term: any) {
+  function handleFiltersAllFilters(term: null) {
     const params = new URLSearchParams(searchParams);
     if (term) {
       params.set('showFilters', term);
@@ -52,7 +52,7 @@ export const AllFilters = () => {
           paramValue ? 'block' : 'hidden'
         }`}
         onClick={() => {
-          handleFilters(null);
+          handleFiltersAllFilters(null);
           document.body.classList.remove('overflow-hidden')
         }}
       ></div>

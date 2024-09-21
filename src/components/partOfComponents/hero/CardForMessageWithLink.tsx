@@ -2,7 +2,9 @@ import React from 'react'
 import { type CardWithLink } from "@/types/CardWithLink";
 import Image from 'next/image';
 
-export const CardForMessageWithLink = ({link, titleCard, secondaryText, imgCard, altImgCard, isAdding} : CardWithLink) => {
+export const CardForMessageWithLink = ({
+  // link, 
+  titleCard, secondaryText, imgCard, altImgCard, isAdding} : CardWithLink) => {
   return (
     <div
   className="group/newProducts w-full cursor-pointer relative p-3 border border-gray-400 shadow-xl shadow-gray-700/65 rounded-sm min-h-64 flex flex-col items-start justify-center gap-4 overflow-hidden transition-all"

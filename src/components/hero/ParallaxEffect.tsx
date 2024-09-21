@@ -24,11 +24,11 @@ export const ParallaxEffect = () => {
   <h4
     className="parallax home__title absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 font-gothic text-md sm:text-lg md:text-2xl italic font-extralight leading-7 tracking-wider lg:text-3xl w-10/12 z-[999999] text-white"
   >
-    "Comprando en Level Up, no solo mejoras tu estilo, sino también el planeta.
+    Comprando en Level Up, no solo mejoras tu estilo, sino también el planeta.
     Al prolongar la vida útil de la ropa, disminuyes emisiones de carbono,
     ahorras agua, y evitas que toneladas de textiles terminen en vertederos.
     <span className="font-bold"
-      >¡Con cada compra subes de nivel en el cuidado del medio ambiente!</span>
+      >Con cada compra subes de nivel en el cuidado del medio ambiente</span>
   </h4>
 </div>
   )

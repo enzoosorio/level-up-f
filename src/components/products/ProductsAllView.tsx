@@ -1,13 +1,12 @@
 "use client";
 
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import { productos } from "@/utils/products";
 import { useOutsideClick } from "@/utils/clickOutside";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { poppins } from '@/utils/fonts'
 
 export const ProductsAllView = () => {
-  const [toggleDropdownvalue, setToggleDropdownvalue] = useState(0);
+  const [toggleDropdownvalue, setToggleDropdownvalue] = useState<number>(0);
 
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -72,7 +71,7 @@ export const ProductsAllView = () => {
 
   };
 
-  function handleFilters(term: any) {
+  function handleFilters(term: string) {
     const params = new URLSearchParams(searchParams);
     if (term) {
       params.set('showFilters', term);

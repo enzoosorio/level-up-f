@@ -1,9 +1,11 @@
 import { ProductsAllView } from '@/components/products/ProductsAllView'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 function ProductsPage() {
   return (
-    <ProductsAllView />
+    <Suspense fallback={<p>LOADING XD</p>}>
+      <ProductsAllView />
+    </Suspense>
   )
 }
 

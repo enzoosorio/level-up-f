@@ -2,21 +2,27 @@ import React from 'react'
 import { type ProductReview } from "@/types/ProductReview";
 import Link from 'next/link';
 
-export const CardForRecentProducts = ({id,
-    name,
-    brand,
-    state,
-    itsOnSale,
-    price,
-    discountedPrice,
-    imageUrl,
-    imageAlt,} 
-    : ProductReview) => {
 
+interface CardForRecentProductsProps { 
+  product : ProductReview,
+  key : number
+}
 
+export const CardForRecentProducts = ({product, key} 
+    : CardForRecentProductsProps) => {
+      const {id,
+        name,
+        brand,
+        // state,
+        itsOnSale,
+        price,
+        discountedPrice,
+        imageUrl,
+        imageAlt} = product
 
   return (
     <Link
+    key={key}
   href={`/products/${id}`}
   className="group/CardRecentProduct relative shadow-xl cursor-pointer border border-gray-300/45 rounded-sm flex flex-col gap-8 items-center justify-center p-4"
     >

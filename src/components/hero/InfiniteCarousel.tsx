@@ -68,14 +68,14 @@ export const InfiniteCarousel = () => {
     className="carousel-track">
         {
         IMAGES_CAROUSEL &&
-            IMAGES_CAROUSEL.map((image) => (
-            <Image src={image.src} alt={image.alt} className="carousel-item max-w-24"  />
+            IMAGES_CAROUSEL.map((image, index) => (
+            <Image key={index} src={image.src} alt={image.alt} className="carousel-item max-w-24"  />
             ))
         }
         {
         IMAGES_CAROUSEL &&
-            IMAGES_CAROUSEL.map((image) => (
-            <Image src={image.src} alt={image.alt} className="carousel-item max-w-24" />
+            IMAGES_CAROUSEL.map((image,index) => (
+            <Image key={index} src={image.src} alt={image.alt} className="carousel-item max-w-24" />
             ))
         }
     </div>
