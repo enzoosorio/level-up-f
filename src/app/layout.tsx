@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { AllFilters } from "@/components/AllFilters";
+import { auth } from "@/auth";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,16 +27,18 @@ interface RootLayoutProps {
   children: React.ReactNode;
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: RootLayoutProps) {
+
+  const session = await auth()
 
   return (
     <html lang="en">
       <body
         className={`relative ${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
-          <Navbar />
+          <Navbar session={session} />
         {children}
         <Footer />
         {/* cambiar el useSearchParams por estado global. */}

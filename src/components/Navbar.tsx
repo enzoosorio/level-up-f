@@ -3,12 +3,31 @@
 import { useShowFilters } from "@/utils/useShowFilters";
 import Link from "next/link";
 import React, { useState } from "react";
+import { Session } from "next-auth";
+import { signOut } from "next-auth/react";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { DropdownMenuGroup } from "@radix-ui/react-dropdown-menu";
+
+interface NavbarProps {
+  session: Session | null;
+}
+
+export const Navbar = ({session} : NavbarProps) => {
 
 
-export const Navbar = () => {
-  
   const allFilters = useShowFilters((state) => state.allFilters)
   const [homeOpen, setHomeOpen] = useState(false);
+
+  const userName = session?.user.name
 
   const toggleHomeOpen = () => {
     setHomeOpen(!homeOpen);
@@ -123,15 +142,52 @@ export const Navbar = () => {
       >
         LEVEL UP
       </a>
-      <button className="bg-primary-orange hidden md:block absolute top-0 right-10 w-max p-2 rounded-lg ">
+
+      {session && session.user ? 
+      <div className={` absolute top-0 right-10 `}>
+          <DropdownMenu>
+        <DropdownMenuTrigger>
+        <div
+        className="bg-primary-orange hidden md:block absolute top-0 right-10 w-max p-2 rounded-lg logoutButton ">
+          {/* SVG USER */} 
+          <svg width="24" height="24" viewBox="0 0 16 16" className="fill-slate-100 svgLogoutButton"><path  d="M14.7 5.34c.13-.32.55-1.59-.13-3.31c0 0-1.05-.33-3.44 1.3c-1-.28-2.07-.32-3.13-.32s-2.13.04-3.13.32c-2.39-1.64-3.44-1.3-3.44-1.3c-.68 1.72-.26 2.99-.13 3.31C.49 6.21 0 7.33 0 8.69C0 13.84 3.33 15 7.98 15S16 13.84 16 8.69c0-1.36-.49-2.48-1.3-3.35zM8 14.02c-3.3 0-5.98-.15-5.98-3.35c0-.76.38-1.48 1.02-2.07c1.07-.98 2.9-.46 4.96-.46c2.07 0 3.88-.52 4.96.46c.65.59 1.02 1.3 1.02 2.07c0 3.19-2.68 3.35-5.98 3.35zM5.49 9.01c-.66 0-1.2.8-1.2 1.78s.54 1.79 1.2 1.79c.66 0 1.2-.8 1.2-1.79s-.54-1.78-1.2-1.78zm5.02 0c-.66 0-1.2.79-1.2 1.78s.54 1.79 1.2 1.79c.66 0 1.2-.8 1.2-1.79s-.53-1.78-1.2-1.78z" /></svg>
+
+        </div> 
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="absolute top-4 left-[-230px] bg-primary-orange w-48" >
+          <DropdownMenuLabel className="text-white whitespace-nowrap text-ellipsis overflow-x-hidden">{userName ? `Hola, ${userName}!` : `Mi cuenta`}</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuGroup className="text-white">
+            <DropdownMenuItem>Tu perfil</DropdownMenuItem>
+            <DropdownMenuItem>Compras</DropdownMenuItem>
+            <DropdownMenuItem>Lista de favoritos</DropdownMenuItem>
+            
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem className="text-white">
+            <div
+            className=""
+            onClick={() => { signOut()}}
+            >
+            Cerrar sesión
+            </div>
+            
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+      </div>
+    : 
+      <Link 
+      href={'/login'}
+      className="bg-primary-orange hidden md:block absolute top-0 right-10 w-max p-2 rounded-lg linkToLogin  ">
         {/* SVG USER */}
-        <svg width="24" height="24" viewBox="0 0 24 24">
+        <svg width="24" height="24" viewBox="0 0 24 24" className="svgLinkToLogin">
           <path
             fill="#FFFFFF"
             d="M7.5 6.5C7.5 8.981 9.519 11 12 11s4.5-2.019 4.5-4.5S14.481 2 12 2S7.5 4.019 7.5 6.5M20 21h1v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1z"
           />
         </svg>
-      </button>
+      </Link>}
     </nav>
   );
 };

@@ -43,7 +43,7 @@ export const AllFilters = () => {
         }}
       ></div>
       <div
-        className={` filtersContainer overflow-y-auto ${roboto.className} absolute top-[-40px] right-0 z-50 ${
+        className={`filtersContainer overflow-y-auto ${roboto.className} absolute top-[-40px] right-0 z-50 ${
           allFilters ? 'right-0 z-[999999999999999999] block' : 'right-[-1000px] hidden md:block '
         } max-w-96 w-56 bg-white text-primary-bue font-buenard h-screen p-4 flex flex-col items-center justify-start pt-10 gap-6 transition-all duration-300`}
       >
