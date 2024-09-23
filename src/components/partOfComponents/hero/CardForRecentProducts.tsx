@@ -1,6 +1,7 @@
 import React from 'react'
 import { type ProductReview } from "@/types/ProductReview";
 import Link from 'next/link';
+import Image from 'next/image';
 
 
 interface CardForRecentProductsProps { 
@@ -26,7 +27,7 @@ export const CardForRecentProducts = ({product, key}
   href={`/products/${id}`}
   className="group/CardRecentProduct relative shadow-xl cursor-pointer border border-gray-300/45 rounded-sm flex flex-col gap-8 items-center justify-center p-4"
     >
-  <img
+  <Image
     src={imageUrl}
     alt={imageAlt}
     className="w-[276px] h-[239px] object-contain group-hover/CardRecentProduct:scale-110 transition-transform"
