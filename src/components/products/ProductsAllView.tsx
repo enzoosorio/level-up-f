@@ -4,6 +4,7 @@ import React, { useState} from "react";
 import { productos } from "@/utils/products";
 import { useOutsideClick } from "@/utils/clickOutside";
 import { useShowFilters } from "@/utils/useShowFilters";
+import Image from "next/image";
 
 export const ProductsAllView = () => {
   const [toggleDropdownvalue, setToggleDropdownvalue] = useState<number>(0);
@@ -170,7 +171,7 @@ export const ProductsAllView = () => {
           }`}
         >
           <picture className="flex flex-col items-center justify-center">
-            <img
+            <Image
               src={tshirt.imageUrl}
               alt={tshirt.imageAlt}
               width={563}
