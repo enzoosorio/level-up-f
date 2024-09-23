@@ -1,3 +1,5 @@
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import { StaticImageData } from "next/image";
 
 
 export interface ProductReview {
@@ -22,10 +24,10 @@ export interface ProductReview {
     referenceURL? : string;
     seller? : string;
     returnPolicy? : string;
-    imageUrl: string;
-    image1? : string  ;
-    image2? : string;
-    image3?: string;
+    imageUrl: string | StaticImport ;
+    image1? : string | StaticImport  ;
+    image2? : string | StaticImport;
+    image3?:  string | StaticImport;
     soldOut? : boolean;
     imageAlt: string;
   }

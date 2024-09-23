@@ -1,4 +1,14 @@
 import { ProductReview } from "@/types/ProductReview";
+import imageURL1 from '@/assets/hero/sample/polo1.png'
+import Image1 from '@/assets/sampleIndividualProduct/polera-adidas-vino-1.jpeg'
+import Image2 from '@/assets/sampleIndividualProduct/polera-adidas-vino-2.jpeg'
+import Image3 from '@/assets/sampleIndividualProduct/polera-adidas-vino-3.jpeg'
+import imageURL2 from '@/assets/hero/sample/Polo2.png'
+import Image21 from '@/assets/hero/sample/Polo2.png'
+import Image31 from '@/assets/sampleIndividualProduct/polera-hunington-1.jpeg'
+import Image32 from '@/assets/sampleIndividualProduct/polera-hunington-2.jpeg'
+import Image33 from '@/assets/sampleIndividualProduct/polera-hunington-3.jpeg'
+import Image41 from '@/assets/hero/sample/Polo3.png'
 
 export const productos : ProductReview[] = [
     {
@@ -22,10 +32,10 @@ export const productos : ProductReview[] = [
         "seller": "Enzo Osorio",
         "referenceURL" : "https://www.adidas.pe/polo-adicolor-seleccion-peruana/IU2741.html",
         "returnPolicy": "Devoluciones aceptadas dentro de 15 días.",
-        "imageUrl": "/hero/sample/polo1.png",
-        "image1": "/sampleIndividualProduct/polera-adidas-vino-1.jpeg",
-        "image2": "/sampleIndividualProduct/polera-adidas-vino-2.jpeg",
-        "image3": "/sampleIndividualProduct/polera-adidas-vino-3.jpeg",
+        "imageUrl": imageURL1,
+        "image1": Image1,
+        "image2": Image2,
+        "image3": Image3,
         "imageAlt": "Camiseta Negra Nike"
     },
     {
@@ -48,10 +58,10 @@ export const productos : ProductReview[] = [
         "discountedPrice": "0",
         "seller": "Enzo Osorio",
         "returnPolicy": "Devoluciones aceptadas dentro de 15 días.",
-        "imageUrl": "/hero/sample/Polo2.png",
-        "image1": "/hero/sample/Polo2.png",
-        "image2": "/hero/sample/Polo2.png",
-        "image3": "/hero/sample/Polo2.png",
+        "imageUrl": imageURL2,
+        "image1": Image21,
+        "image2": Image21,
+        "image3": Image21,
         "imageAlt": "Adidas stan smith"
     },
     {
@@ -74,10 +84,10 @@ export const productos : ProductReview[] = [
         "discountedPrice": "40.00",
         "seller": "Enzo Osorio",
         "returnPolicy": "Devoluciones aceptadas dentro de 15 días.",
-        "imageUrl": "/hero/sample/Polo2.png",
-        "image1": "/sampleIndividualProduct/polera-hunington-1.jpeg",
-        "image2": "/sampleIndividualProduct/polera-hunington-2.jpeg",
-        "image3": "/sampleIndividualProduct/polera-hunington-3.jpeg",
+        "imageUrl": Image31,
+        "image1": Image31,
+        "image2": Image32,
+        "image3": Image33,
         "imageAlt": "Polo adidas"
     },
     {
@@ -100,10 +110,10 @@ export const productos : ProductReview[] = [
         "discountedPrice": "100.00",
         "seller": "Enzo Osorio",
         "returnPolicy": "Devoluciones aceptadas dentro de 15 días.",
-        "imageUrl": "/hero/sample/Polo3.png",
-        "image1": "/hero/sample/Polo3.png",
-        "image2": "/hero/sample/Polo3.png",
-        "image3": "/hero/sample/Polo3.png",
+        "imageUrl": Image41,
+        "image1": Image41,
+        "image2": Image41,
+        "image3": Image41,
         "imageAlt": "Zapatillas supernova"
     }
 ];

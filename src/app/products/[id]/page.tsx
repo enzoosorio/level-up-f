@@ -3,6 +3,7 @@
 import React, { RefObject, useEffect, useRef } from 'react'
 import { productos } from '@/utils/products'
 import { useParams } from 'next/navigation'
+import Image from 'next/image'
 
 function IndividualProduct() {
   
@@ -22,7 +23,9 @@ function IndividualProduct() {
   if(individualProduct?.discountedPrice) 
     discountedPrice = parseFloat(individualProduct?.discountedPrice);
 
-  console.log(individualProduct)
+  if(!individualProduct?.image1 || !individualProduct?.image2 || !individualProduct.image3 || !individualProduct.imageUrl){
+    return <p>No existen las imagenes del producto.</p>
+  }
 
   useEffect(() => {
 
@@ -90,7 +93,7 @@ function IndividualProduct() {
       ref={thumbnailRef}
       className="flex flex-col gap-4 items-center mr-10 h-full">
         <li className="product1 w-max cursor-pointer rounded-sm">
-          <img
+          <Image
             src={individualProduct?.image1}
             alt={individualProduct?.imageAlt}
             width={50}
@@ -98,7 +101,7 @@ function IndividualProduct() {
           />
         </li>
         <li className="product2 w-max cursor-pointer rounded-sm">
-          <img
+          <Image
             src={individualProduct?.image2}
             alt={individualProduct?.imageAlt}
             width={50}
@@ -106,7 +109,7 @@ function IndividualProduct() {
           />
         </li>
         <li className="product3 w-max cursor-pointer rounded-sm">
-          <img
+          <Image
             src={individualProduct?.image3}
             alt={individualProduct?.imageAlt}
             width={50}
@@ -119,7 +122,7 @@ function IndividualProduct() {
       ref={wrapperMainPhotoRef}
         className="pictureMainPhoto  w-max flex flex-col items-center justify-center mb-4"
       >
-        <img
+        <Image
         ref={imageMainPhotoRef}
           src={individualProduct?.image1}
           alt={"Polera polo"}
@@ -173,7 +176,7 @@ function IndividualProduct() {
     ref={wrapperZoomPhotoRef}
       className="hidden zoomImage overflow-hidden z-50 absolute top-1/2 -translate-y-1/2 right-1/4 translate-x-2/4 w-[calc(50%-2rem)] h-[calc(100%-2rem)] bg-white border shadow-xl zoom"
     >
-      <img
+      <Image
       ref={zoomedImageRef}
         src={individualProduct?.image1}
         alt={`Zoom de la imagen ${individualProduct?.imageAlt}`}
