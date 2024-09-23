@@ -31,7 +31,8 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   },
   session: { strategy: "jwt" },
   callbacks : {
-    async signIn({user, account}){
+    // elimine el user de los parametros de signIn
+    async signIn({account}){
       
       if(account?.provider !== 'credentials') return true;
     //   if(user.id){

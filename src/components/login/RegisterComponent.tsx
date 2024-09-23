@@ -58,19 +58,25 @@ export const RegisterComponent = () => {
             <div className='flex flex-col items-center gap-4'>
                 <label htmlFor='nameUser'>Nombre de usuario</label>
                 <input type='text' id='nameUser' {...register('username')}  name='username' placeholder='juan09'/>
+                {errors && errors.username && <FormError message={errors?.username.message} />}
             </div>
             <div className='flex flex-col items-center gap-4 '>
                 <label htmlFor='emailUser'>Correo electrónico</label>
                 <input type='email' id='emailUser' {...register('email')} name='email' placeholder='juanperez123@gmail.com'/>
+                {errors && errors.email && <FormError message={errors?.email.message} />}
             </div>
             <div className='flex flex-col items-center gap-4 '>
                 <label htmlFor='passwordUser'>Contraseña</label>
                 <input type='password' id='passwordUser' {...register('password')} name='password' placeholder='******'/>
+                {errors && errors.password && <FormError message={errors?.password.message} />}
             </div>
             <div className='flex flex-col items-center gap-4 '>
                 <label htmlFor='repeatPasswordUser'>Repetir contraseña</label>
                 <input type='password' id='repeatPasswordUser' {...register('repeatPassword')} name='repeatPassword' placeholder='******'/>
+                {errors && errors.repeatPassword && <FormError message={errors?.repeatPassword.message} />}
             </div>
+            <FormError message={error} />
+            <FormSuccess message={success} />
         </form>
         <FormError message={error} />
         <FormSuccess message={success} />
