@@ -113,11 +113,14 @@ export const Navbar = ({session} : NavbarProps) => {
               Inicio
             </Link>
           </li>
-          <li>
+{/*         cambiar y agregar boton personalizado si el usuario esta logueado  */}
+         {!session &&  
+         <li>
             <Link href={"/login"} onClick={toggleHomeOpen}>
               Iniciar sesión
             </Link>
           </li>
+         }
           <li>
             <Link href={"/products"} onClick={toggleHomeOpen}>
               Productos con descuento
@@ -135,26 +138,18 @@ export const Navbar = ({session} : NavbarProps) => {
           </li>
         </ul>
       </>
-      <a
-        data-astro-reload
-        href="/"
-        className="text-primary-blue font-titan text-4xl w-max mx-auto text-primary-bue hover:scale-105 transition-transform"
-      >
-        LEVEL UP
-      </a>
-
-      {session && session.user ? 
-      <div className={` absolute top-0 right-10 `}>
-          <DropdownMenu>
+      {session && session.user  ? 
+      <div className={` relative md:absolute md:top-0 md:right-10 `}>
+        <DropdownMenu>
         <DropdownMenuTrigger>
         <div
-        className="bg-primary-orange hidden md:block absolute top-0 right-10 w-max p-2 rounded-lg logoutButton ">
+        className={` bg-primary-orange block md:absolute md:top-0 md:right-10 w-max p-2 rounded-lg logoutButton `}>
           {/* SVG USER */} 
           <svg width="24" height="24" viewBox="0 0 16 16" className="fill-slate-100 svgLogoutButton"><path  d="M14.7 5.34c.13-.32.55-1.59-.13-3.31c0 0-1.05-.33-3.44 1.3c-1-.28-2.07-.32-3.13-.32s-2.13.04-3.13.32c-2.39-1.64-3.44-1.3-3.44-1.3c-.68 1.72-.26 2.99-.13 3.31C.49 6.21 0 7.33 0 8.69C0 13.84 3.33 15 7.98 15S16 13.84 16 8.69c0-1.36-.49-2.48-1.3-3.35zM8 14.02c-3.3 0-5.98-.15-5.98-3.35c0-.76.38-1.48 1.02-2.07c1.07-.98 2.9-.46 4.96-.46c2.07 0 3.88-.52 4.96.46c.65.59 1.02 1.3 1.02 2.07c0 3.19-2.68 3.35-5.98 3.35zM5.49 9.01c-.66 0-1.2.8-1.2 1.78s.54 1.79 1.2 1.79c.66 0 1.2-.8 1.2-1.79s-.54-1.78-1.2-1.78zm5.02 0c-.66 0-1.2.79-1.2 1.78s.54 1.79 1.2 1.79c.66 0 1.2-.8 1.2-1.79s-.53-1.78-1.2-1.78z" /></svg>
 
         </div> 
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="absolute top-4 left-[-230px] bg-primary-orange w-48" >
+        <DropdownMenuContent className="absolute  md:top-4 left-[-95px] md:left-[-230px] bg-primary-orange w-48" >
           <DropdownMenuLabel className="text-white whitespace-nowrap text-ellipsis overflow-x-hidden">{userName ? `Hola, ${userName}!` : `Mi cuenta`}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup className="text-white">
@@ -164,12 +159,15 @@ export const Navbar = ({session} : NavbarProps) => {
             
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
-          <DropdownMenuItem className="text-white">
+          <DropdownMenuItem className="text-white font-bold group/itemLogout">
             <div
-            className=""
+            className="flex flex-row w-full items-center justify-between"
             onClick={() => { signOut()}}
             >
-            Cerrar sesión
+            <span>Cerrar sesión</span>
+            <span>
+            <svg width="18" height="18" viewBox="0 0 1024 1024" className="fill-white group-hover/itemLogout:fill-black "><path  d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64"/><path d="m237.248 512l265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312z"/></svg>
+            </span>
             </div>
             
           </DropdownMenuItem>
@@ -188,6 +186,14 @@ export const Navbar = ({session} : NavbarProps) => {
           />
         </svg>
       </Link>}
+      <Link
+        data-astro-reload
+        href="/"
+        className="text-primary-blue font-titan text-4xl w-max mx-auto text-primary-bue hover:scale-105 transition-transform"
+      >
+        LEVEL UP
+      </Link>
+
     </nav>
   );
 };
