@@ -25,7 +25,6 @@ export const Navbar = ({session} : NavbarProps) => {
   const [homeOpen, setHomeOpen] = useState(false);
 
 
-
   const toggleHomeOpen = () => {
     setHomeOpen(!homeOpen);
   };
@@ -111,7 +110,7 @@ export const Navbar = ({session} : NavbarProps) => {
             </Link>
           </li>
 {/*         cambiar y agregar boton personalizado si el usuario esta logueado  */}
-         {!session &&  
+         {!session &&
          <li>
             <Link href={"/login"} onClick={toggleHomeOpen}>
               Iniciar sesión
@@ -135,7 +134,7 @@ export const Navbar = ({session} : NavbarProps) => {
           </li>
         </ul>
       </>
-      {session && session.user  ? 
+      {session && session?.user  ? 
       <div className={` relative md:absolute md:top-0 md:right-10 `}>
         <DropdownMenu>
         <DropdownMenuTrigger>

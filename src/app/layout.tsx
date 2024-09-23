@@ -36,19 +36,19 @@ export default async function RootLayout({
   const session = await auth()
 
   return (
+      <SessionProvider session={session} >
     <html lang="en">
       <body
         className={`relative ${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
-        <SessionProvider session={session} >
           <Navbar session={session}/>
         {children}
         <Footer />
         {/* cambiar el useSearchParams por estado global. */}
           <AllFilters />
         
-        </SessionProvider>
       </body>
     </html>
+        </SessionProvider>
   );
 }

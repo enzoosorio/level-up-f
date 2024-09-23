@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 import authConfig from "@/auth.config";
 import NextAuth from "next-auth";
 import { DEFAULT_LOGIN_REDIRECT, 
@@ -9,11 +10,12 @@ import { DEFAULT_LOGIN_REDIRECT,
 const { auth } = NextAuth(authConfig);
 
 
-export default auth(async function middleware(req) {
+export default auth(async function middleware(req : NextRequest) {
 
   const { nextUrl } = req;
   
-  const isLoggedIn = !!req.auth;
+  const session = await auth();
+  const isLoggedIn = !!session;
   
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
