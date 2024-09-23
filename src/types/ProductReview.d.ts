@@ -24,10 +24,10 @@ export interface ProductReview {
     referenceURL? : string;
     seller? : string;
     returnPolicy? : string;
-    imageUrl: string | StaticImport ;
-    image1? : string | StaticImport  ;
-    image2? : string | StaticImport;
-    image3?:  string | StaticImport;
+    imageUrl: string | StaticImport | StaticImageData;
+    image1? : string | StaticImport | StaticImageData ;
+    image2? : string | StaticImport | StaticImageData;
+    image3?:  string | StaticImport | StaticImageData;
     soldOut? : boolean;
     imageAlt: string;
   }
