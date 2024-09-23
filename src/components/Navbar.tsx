@@ -5,6 +5,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { Session } from "next-auth";
 import { signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 import {
   DropdownMenu,
@@ -16,18 +17,15 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { DropdownMenuGroup } from "@radix-ui/react-dropdown-menu";
 
-interface NavbarProps {
-  session: Session | null;
-}
 
-export const Navbar = ({session} : NavbarProps) => {
+export const Navbar = () => {
 
+  const {data : session} = useSession()
 
   const allFilters = useShowFilters((state) => state.allFilters)
   const [homeOpen, setHomeOpen] = useState(false);
 
   const userName = session?.user.name
-
   const toggleHomeOpen = () => {
     setHomeOpen(!homeOpen);
   };

@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { AllFilters } from "@/components/AllFilters";
+import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 
 const geistSans = localFont({
@@ -38,7 +39,9 @@ export default async function RootLayout({
       <body
         className={`relative ${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
-          <Navbar session={session} />
+        <SessionProvider session={session} >
+          <Navbar/>
+        </SessionProvider>
         {children}
         <Footer />
         {/* cambiar el useSearchParams por estado global. */}
