@@ -3,10 +3,7 @@
 import { useShowFilters } from "@/utils/useShowFilters";
 import Link from "next/link";
 import React, { useState } from "react";
-import { Session } from "next-auth";
 import { signOut } from "next-auth/react";
-import { useSession } from "next-auth/react";
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,16 +13,19 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { DropdownMenuGroup } from "@radix-ui/react-dropdown-menu";
+import { Session } from "next-auth";
 
+interface NavbarProps{
+  session? : Session | null
+}
 
-export const Navbar = () => {
-
-  const {data : session} = useSession()
+export const Navbar = ({session} : NavbarProps) => {
 
   const allFilters = useShowFilters((state) => state.allFilters)
   const [homeOpen, setHomeOpen] = useState(false);
 
-  const userName = session?.user.name
+
+
   const toggleHomeOpen = () => {
     setHomeOpen(!homeOpen);
   };
@@ -147,7 +147,7 @@ export const Navbar = () => {
         </div> 
         </DropdownMenuTrigger>
         <DropdownMenuContent className="absolute  md:top-4 left-[-95px] md:left-[-230px] bg-primary-orange w-48" >
-          <DropdownMenuLabel className="text-white whitespace-nowrap text-ellipsis overflow-x-hidden">{userName ? `Hola, ${userName}!` : `Mi cuenta`}</DropdownMenuLabel>
+          <DropdownMenuLabel className="text-white whitespace-nowrap text-ellipsis overflow-x-hidden">{session.user.name ? `Hola, ${session.user.name}!` : `Mi cuenta`}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup className="text-white">
             <DropdownMenuItem>Tu perfil</DropdownMenuItem>

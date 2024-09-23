@@ -28,6 +28,7 @@ interface RootLayoutProps {
   children: React.ReactNode;                    
 }
 
+
 export default async function RootLayout({
   children,
 }: RootLayoutProps) {
@@ -40,13 +41,13 @@ export default async function RootLayout({
         className={`relative ${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
         <SessionProvider session={session} >
-          <Navbar/>
-        </SessionProvider>
+          <Navbar session={session}/>
         {children}
         <Footer />
         {/* cambiar el useSearchParams por estado global. */}
           <AllFilters />
         
+        </SessionProvider>
       </body>
     </html>
   );
