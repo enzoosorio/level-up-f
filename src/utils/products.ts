@@ -1,14 +1,4 @@
 import { ProductReview } from "@/types/ProductReview";
-import imageURL1 from '../assets/hero/sample/polo1.png'
-import Image1 from '../assets/sampleIndividualProduct/polera-adidas-vino-1.jpeg'
-import Image2 from '../assets/sampleIndividualProduct/polera-adidas-vino-2.jpeg'
-import Image3 from '../assets/sampleIndividualProduct/polera-adidas-vino-3.jpeg'
-import imageURL2 from '../assets/hero/sample/Polo2.png'
-import Image21 from '../assets/hero/sample/Polo2.png'
-import Image31 from '../assets/sampleIndividualProduct/polera-hunington-1.jpeg'
-import Image32 from '../assets/sampleIndividualProduct/polera-hunington-2.jpeg'
-import Image33 from '../assets/sampleIndividualProduct/polera-hunington-3.jpeg'
-import Image41 from '../assets/hero/sample/Polo3.png'
 
 export const productos : ProductReview[] = [
     {

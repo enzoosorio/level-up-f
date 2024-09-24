@@ -17,9 +17,8 @@ export const Adding = () => {
       isAdding
     />
     <CardForMessageWithLink
-      titleCard={`¡REALIZA ACTIVIDADES Y GANA UN 15% DE DESCUENTO!`}
-      secondaryText={`Ayudanos a tener más alcance. Invita a 2 amigos a registrarse en nuestra
-        página web y gana un cupón del 15% de descuento.`}
+      titleCard={`¡Participa en el sorteo de una SHOE BOX, un pack CREP PROTECT x ADIDAS y de un polo H&M!`}
+      secondaryText={`Mira los pasos a seguir en nuestro instagram @levelupstore19`}
       imgCard={SaveAndRecycle}
       altImgCard="¡Gana un cupón de descuento!"
       isAdding

@@ -15,10 +15,7 @@ export const AllFilters = () => {
   const allFilters = useShowFilters((state) => state.allFilters)
   const showAllFilters = useShowFilters((state) => state.showAllFilters)    
  
-  const [contentFilterAsObject, setContentFilterAsObject] = useState<AllFiltersProps | null>({
-    id : '',
-    name : ''
-  });
+  const [contentFilterAsObject, setContentFilterAsObject] = useState<AllFiltersProps | null>(null);
 
   const ALL_FILTERS = [
     { name: "Ordenar por", id: "OrderBy" },

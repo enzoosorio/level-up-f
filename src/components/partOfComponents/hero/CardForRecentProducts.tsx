@@ -30,6 +30,8 @@ export const CardForRecentProducts = ({product, key}
   <Image
     src={imageUrl}
     alt={imageAlt}
+    width={276}
+    height={239}
     className="w-[276px] h-[239px] object-contain group-hover/CardRecentProduct:scale-110 transition-transform"
   />
   <div className="flex flex-col items-center justify-center gap-4 font-buenard">
