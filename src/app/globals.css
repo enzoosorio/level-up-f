@@ -97,8 +97,10 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 
-.pictureMainPhoto img:hover {
-  cursor: zoom-in;
+@media (width >= 768px) {
+  .pictureMainPhoto img:hover {
+    cursor: zoom-in;
+  }
 }
 
 .zoom {
@@ -243,7 +245,7 @@ input[type="radio"]:checked::before {
 /* -------------------------------------------------------------- */
 
 .homeClose{
-  clip-path: circle(1px at 50% 3.5rem);
+  clip-path: circle(1px at 50% 5.5rem);
 }
 
 .homeOpen{

@@ -4,6 +4,7 @@ import React, { RefObject, useEffect, useRef } from 'react'
 import { productos } from '@/utils/products'
 import { useParams } from 'next/navigation'
 import Image from 'next/image'
+import { roboto } from '@/utils/fonts'
 
 function IndividualProduct() {
   
@@ -29,25 +30,21 @@ function IndividualProduct() {
 
   useEffect(() => {
 
-    if(thumbnailRef.current){
-      const thumbnails : NodeListOf<HTMLImageElement> = thumbnailRef.current.querySelectorAll('li img');
+    const handleThumbnailClick = (thumbnail: HTMLImageElement) => {
+      if (thumbnail.src && imageMainPhotoRef.current && zoomedImageRef.current) {
+        imageMainPhotoRef.current.src = thumbnail.src;
+        imageMainPhotoRef.current.alt = thumbnail.alt;
+        zoomedImageRef.current.src = thumbnail.src;
+      }
+    };
 
-      thumbnails.forEach((thumbnail) => {
-        thumbnail.addEventListener("click", () => {
-          if (thumbnail.src && imageMainPhotoRef.current && zoomedImageRef.current) {
-            imageMainPhotoRef.current.src = thumbnail.src; // Cambia la imagen principal
-            imageMainPhotoRef.current.alt = thumbnail.alt;
-            zoomedImageRef.current.src = thumbnail.src; // Cambia también la imagen del zoom
-          } else {
-            alert("Este producto no cuenta con esta imagen.");
-          }
-        });
-      });
-
-    }
+    const thumbnails = thumbnailRef.current?.querySelectorAll<HTMLImageElement>('.productImage');
+    thumbnails?.forEach(thumbnail => {
+      thumbnail.addEventListener('click', () => handleThumbnailClick(thumbnail));
+    });
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (wrapperMainPhotoRef.current && zoomedImageRef.current) {
+      if (wrapperMainPhotoRef.current && zoomedImageRef.current && window.innerWidth > 860) {
         const rect = wrapperMainPhotoRef.current.getBoundingClientRect();
         const clientX = ((e.clientX - rect.left) / rect.width) * 100;
         const clientY = ((e.clientY - rect.top) / rect.height) * 100;
@@ -56,14 +53,14 @@ function IndividualProduct() {
     };
   
     const handleMouseEnter = () => {
-      if (wrapperZoomPhotoRef.current) {
+      if (wrapperZoomPhotoRef.current && window.innerWidth > 860) {
         wrapperZoomPhotoRef.current.classList.remove("hidden");
         wrapperZoomPhotoRef.current.classList.add("zoom");
       }
     };
   
     const handleMouseLeave = () => {
-      if (wrapperZoomPhotoRef.current && zoomedImageRef.current) {
+      if (wrapperZoomPhotoRef.current && zoomedImageRef.current && window.innerWidth > 860) {
         wrapperZoomPhotoRef.current.classList.add("hidden");
         wrapperZoomPhotoRef.current.classList.remove("zoom");
         zoomedImageRef.current.style.transform = "translate(-50%, -50%) scale(1)";
@@ -86,74 +83,75 @@ function IndividualProduct() {
 
   return (
     <section
-    className="relative flex flex-row gap-4 items-center justify-around border border-gray-600/45 w-full shadow-lg shadow-gray-500/65 rounded-md px-2 py-8 mb-10"
+    className="relative flex flex-col lg:flex-row gap-4 items-center justify-around border border-gray-600/45 w-11/12 xl:w-full mx-auto shadow-lg shadow-gray-500/65 rounded-md px-2 py-8 mb-10"
   >
-    <div className="relative flex flex-row gap-4 items-start">
+
+    <div className="relative flex flex-col-reverse md:flex-row  items-start ">
       <ul 
       ref={thumbnailRef}
-      className="flex flex-col gap-4 items-center mr-10 h-full">
-        <li className="product1 w-max cursor-pointer rounded-sm">
-          <Image
+      className="flex flex-row md:flex-col gap-4 items-center md:mr-10  mx-auto md:mx-0 md:pt-12  lg:pt-0">
+        <li className="w-max cursor-pointer rounded-sm">
+          <img
             src={individualProduct?.image1}
             alt={individualProduct?.imageAlt}
             width={50}
-            className={""}
+            className={"productImage"}
           />
         </li>
         <li className="product2 w-max cursor-pointer rounded-sm">
-          <Image
+          <img
             src={individualProduct?.image2}
             alt={individualProduct?.imageAlt}
             width={50}
-            className={""}
+            className={"productImage"}
           />
         </li>
         <li className="product3 w-max cursor-pointer rounded-sm">
-          <Image
+          <img
             src={individualProduct?.image3}
             alt={individualProduct?.imageAlt}
             width={50}
-            className={""}
+            className={"productImage"}
           />
         </li>
       </ul>
 
       <picture
       ref={wrapperMainPhotoRef}
-        className="pictureMainPhoto  w-max flex flex-col items-center justify-center mb-4"
+        className="pictureMainPhoto w-max flex flex-col items-center justify-center mb-4 pt-12 lg:pt-0"
       >
-        <Image
+        <img
         ref={imageMainPhotoRef}
           src={individualProduct?.image1}
           alt={"Polera polo"}
           width={400}
-          className={"hover:cursor-zoom-in group/mainPicture "}
+          className={"md:hover:cursor-zoom-in group/mainPicture "}
         />
         
       </picture>
-      <span className='absolute -bottom-4 left-[11rem] w-max text-xs font-bold text-gray-600/80 mt-4 font-onest'>Mueve el mouse sobre la imagen para zoom.</span>
+      <span className='absolute hidden lg:block -bottom-4 left-[11rem] w-max text-xs font-bold text-gray-600/80 mt-4 font-onest'>Mueve el mouse sobre la imagen para zoom.</span>
     </div>
     <div
-      className="flex flex-col items-center gap-8 w-96 font-buenard border p-4 rounded-sm"
+      className={`flex flex-col items-center gap-8 sm:w-11/12 lg:w-96 font-buenard border p-4 rounded-sm ${roboto.className}`}
     >
-      <h2 className="pl-2 w-full text-pretty text-sm md:text-2xl">
+      <h2 className="pl-2 w-full text-pretty text-2xl font-bold">
         {individualProduct?.name}
       </h2>
-      <p className="pl-2 w-full text-sm md:text-2xl">{`Marca : ${individualProduct?.brand}`}</p>
-      <p className="pl-2 w-full text-sm md:text-lg italic font-serif">
+      <p className="pl-2 w-full text-2xl">{`Marca : ${individualProduct?.brand}`}</p>
+      <p className="pl-2 w-full text-lg italic">
         {`“${individualProduct?.description}“`}
       </p>
       {individualProduct?.referenceURL && 
-      <a href={individualProduct.referenceURL} target='_blank' rel='noopener noreferrer' className="pl-2 w-full text-sm md:text-lg underline font-titan text-primary-bue hover:drop-shadow-xl   transition-all">
+      <a href={individualProduct.referenceURL} target='_blank' rel='noopener noreferrer' className="pl-2 w-full text-lg underline font-titan text-primary-bue hover:drop-shadow-xl   transition-all">
       Referencia del producto
     </a>}
-      <p className="pl-2 w-full text-sm md:text-xl">
+      <p className="pl-2 w-full text-xl">
         Publicado por: <span className="text-primary-bue font-bold font-buenard"
           
           // TODO : se debe extraer el nombre del seller debido a su producto ID.
           >{"Juan Perez"}</span> 
       </p>
-      <p className="pl-2 w-full text-sm md:text-xl flex flex-row items-center"> 
+      <p className="pl-2 w-full text-xl flex flex-row items-center"> 
         <span className={`${discountedPrice ? 'line-through stroke-red-600 line-through-red' : 'text-2xl font-bold'} mr-4`}>S/{individualProduct?.price} </span> 
       {discountedPrice !== 0 && <span className='text-primary-green font-bold text-2xl'>{`S/${individualProduct?.discountedPrice}`}</span>}
        </p>
@@ -176,7 +174,7 @@ function IndividualProduct() {
     ref={wrapperZoomPhotoRef}
       className="hidden zoomImage overflow-hidden z-50 absolute top-1/2 -translate-y-1/2 right-1/4 translate-x-2/4 w-[calc(50%-2rem)] h-[calc(100%-2rem)] bg-white border shadow-xl zoom"
     >
-      <Image
+      <img
       ref={zoomedImageRef}
         src={individualProduct?.image1}
         alt={`Zoom de la imagen ${individualProduct?.imageAlt}`}

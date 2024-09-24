@@ -1,9 +1,4 @@
-"use client";
-
-import { useShowFilters } from "@/utils/useShowFilters";
 import Link from "next/link";
-import React, { useState } from "react";
-import { signOut } from "next-auth/react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,20 +9,14 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { DropdownMenuGroup } from "@radix-ui/react-dropdown-menu";
 import { Session } from "next-auth";
+import { ButtonToggleHomeOpen } from "./partOfComponents/navbar/buttonToggleHomeOpen";
+import { SignOutDropdownUser } from "./partOfComponents/navbar/signOutDropdownUser";
 
 interface NavbarProps{
   session? : Session | null
 }
 
 export const Navbar = ({session} : NavbarProps) => {
-
-  const allFilters = useShowFilters((state) => state.allFilters)
-  const [homeOpen, setHomeOpen] = useState(false);
-
-
-  const toggleHomeOpen = () => {
-    setHomeOpen(!homeOpen);
-  };
 
   return (
     <nav className="relative flex flex-col gap-4 items-center justify-center w-11/12 mx-auto mt-10 text-white xl:max-w-[1200px]">
@@ -83,56 +72,7 @@ export const Navbar = ({session} : NavbarProps) => {
       </button>
       {/* HOME FOR MOBILE */}
       <>
-        <button
-          onClick={toggleHomeOpen}
-          className={`bg-primary-orange buttonHome w-max p-3 md:hidden mb-2 ${
-            allFilters ? "z-0" : "z-[9999999999]"
-          } rounded-full  ${
-            homeOpen ? "bg-primary-bue" : "bg-primary-orange"
-          } `}
-        >
-          {/* SVG HOME */}
-          <svg width="24" height="24" viewBox="0 0 20 20">
-            <path
-              fill="#FFFFFF"
-              d="M18.178 11.373a.7.7 0 0 1 .7.7v5.874c.027.812-.071 1.345-.434 1.68c-.338.311-.828.4-1.463.366H3.144C2.5 19.961 2 19.7 1.768 19.173c-.154-.347-.226-.757-.226-1.228v-5.873a.7.7 0 0 1 1.4 0v5.873q.002.349.07.562l.036.098l-.003-.01c.001-.013.03-.008.132-.002h13.84c.245.014.401 0 .456-.001l.004-.001c-.013-.053.012-.27 0-.622v-5.897a.7.7 0 0 1 .701-.7M10.434 0c.264 0 .5.104.722.297l8.625 8.139a.7.7 0 1 1-.962 1.017l-8.417-7.944l-9.244 7.965a.7.7 0 0 1-.915-1.06L9.689.277l.086-.064c.214-.134.428-.212.66-.212"
-            />
-          </svg>
-        </button>
-        <ul
-          className={`fixed inset-0 w-full h-full bg-primary-orange overflow-hidden ${
-            homeOpen ? "homeOpen" : "homeClose"
-          } flex flex-col items-center justify-center gap-16 z-[99999999] transition-all duration-[400ms] font-zenMaru text-2xl`}
-        >
-          <li className="hover:scale-105">
-            <Link href={"/"} onClick={toggleHomeOpen}>
-              Inicio
-            </Link>
-          </li>
-{/*         cambiar y agregar boton personalizado si el usuario esta logueado  */}
-         {!session &&
-         <li>
-            <Link href={"/login"} onClick={toggleHomeOpen}>
-              Iniciar sesión
-            </Link>
-          </li>
-         }
-          <li>
-            <Link href={"/products"} onClick={toggleHomeOpen}>
-              Productos con descuento
-            </Link>
-          </li>
-          <li>
-            <Link href={"/products"} onClick={toggleHomeOpen}>
-              Nuevos
-            </Link>
-          </li>
-          <li>
-            <Link href={"/publishProducts"} onClick={toggleHomeOpen}>
-              Publicar producto
-            </Link>
-          </li>
-        </ul>
+        <ButtonToggleHomeOpen session={session} />
       </>
       {session && session?.user  ? 
       <div className={` relative md:absolute md:top-0 md:right-10 `}>
@@ -156,16 +96,7 @@ export const Navbar = ({session} : NavbarProps) => {
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuItem className="text-white font-bold group/itemLogout">
-            <div
-            className="flex flex-row w-full items-center justify-between"
-            onClick={() => { signOut()}}
-            >
-            <span>Cerrar sesión</span>
-            <span>
-            <svg width="18" height="18" viewBox="0 0 1024 1024" className="fill-white group-hover/itemLogout:fill-black "><path  d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64"/><path d="m237.248 512l265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312z"/></svg>
-            </span>
-            </div>
-            
+            <SignOutDropdownUser/>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -183,7 +114,6 @@ export const Navbar = ({session} : NavbarProps) => {
         </svg>
       </Link>}
       <Link
-        data-astro-reload
         href="/"
         className="text-primary-blue font-titan text-4xl w-max mx-auto text-primary-bue hover:scale-105 transition-transform"
       >
