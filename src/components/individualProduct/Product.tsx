@@ -142,7 +142,7 @@ export const IndividualProductComponent = ({session} : IndividualProductProps) =
             src={individualProduct?.image1}
             alt={"Polera polo"}
             width={400}
-            className={"md:hover:cursor-zoom-in group/mainPicture "}
+            className={"md:hover:cursor-zoom-in group/mainPicture rounded-sm md:rounded-none w-[300px] md:w-[400px] "}
           />
           
         </picture>
