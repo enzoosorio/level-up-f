@@ -2,6 +2,7 @@ import React from 'react'
 import { type ProductReview } from "@/types/ProductReview";
 import Link from 'next/link';
 import Image from 'next/image';
+import { inter, roboto } from '@/utils/fonts';
 
 
 interface CardForRecentProductsProps { 
@@ -34,8 +35,8 @@ export const CardForRecentProducts = ({product, key}
     height={239}
     className="w-[276px] h-[239px] object-contain group-hover/CardRecentProduct:scale-110 transition-transform"
   />
-  <div className="flex flex-col items-center justify-center gap-4 font-buenard">
-    <p className="text-xl">{name}</p>
+  <div className={`flex flex-col items-center justify-center gap-4 ${inter.className}`}>
+    <p className="text-xl font-bold ">{name}</p>
     {brand && <p className="text-lg">{brand}</p>}
     <p className="text-xl flex flex-row items-center">
       {/* <span className="font-bold">{state}{`/10 - `}</span> */}

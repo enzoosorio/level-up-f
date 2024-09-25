@@ -11,12 +11,14 @@ import { DropdownMenuGroup } from "@radix-ui/react-dropdown-menu";
 import { Session } from "next-auth";
 import { ButtonToggleHomeOpen } from "./partOfComponents/navbar/buttonToggleHomeOpen";
 import { SignOutDropdownUser } from "./partOfComponents/navbar/signOutDropdownUser";
+import { poppins } from "@/utils/fonts";
 
 interface NavbarProps{
   session? : Session | null
 }
 
 export const Navbar = ({session} : NavbarProps) => {
+
 
   return (
     <nav className="relative flex flex-col gap-4 items-center justify-center w-11/12 mx-auto mt-10 text-white xl:max-w-[1200px]">
@@ -79,8 +81,8 @@ export const Navbar = ({session} : NavbarProps) => {
         <DropdownMenu>
         <DropdownMenuTrigger>
         <div
-        className={` bg-primary-orange block md:absolute md:top-0 md:right-10 w-max p-2 rounded-lg logoutButton `}>
-          {/* SVG USER */} 
+        className={` bg-primary-orange block md:absolute md:top-0 md:right-10 w-max p-2 rounded-lg logoutButton outline-none `}>
+          {/* SVG USER LOGGED IN CAT*/} 
           <svg width="24" height="24" viewBox="0 0 16 16" className="fill-slate-100 svgLogoutButton"><path  d="M14.7 5.34c.13-.32.55-1.59-.13-3.31c0 0-1.05-.33-3.44 1.3c-1-.28-2.07-.32-3.13-.32s-2.13.04-3.13.32c-2.39-1.64-3.44-1.3-3.44-1.3c-.68 1.72-.26 2.99-.13 3.31C.49 6.21 0 7.33 0 8.69C0 13.84 3.33 15 7.98 15S16 13.84 16 8.69c0-1.36-.49-2.48-1.3-3.35zM8 14.02c-3.3 0-5.98-.15-5.98-3.35c0-.76.38-1.48 1.02-2.07c1.07-.98 2.9-.46 4.96-.46c2.07 0 3.88-.52 4.96.46c.65.59 1.02 1.3 1.02 2.07c0 3.19-2.68 3.35-5.98 3.35zM5.49 9.01c-.66 0-1.2.8-1.2 1.78s.54 1.79 1.2 1.79c.66 0 1.2-.8 1.2-1.79s-.54-1.78-1.2-1.78zm5.02 0c-.66 0-1.2.79-1.2 1.78s.54 1.79 1.2 1.79c.66 0 1.2-.8 1.2-1.79s-.53-1.78-1.2-1.78z" /></svg>
 
         </div> 
@@ -105,7 +107,7 @@ export const Navbar = ({session} : NavbarProps) => {
       <Link 
       href={'/login'}
       className="bg-primary-orange hidden md:block absolute top-0 right-10 w-max p-2 rounded-lg linkToLogin  ">
-        {/* SVG USER */}
+        {/* SVG USER WITHOUT LOGIN */}
         <svg width="24" height="24" viewBox="0 0 24 24" className="svgLinkToLogin">
           <path
             fill="#FFFFFF"
@@ -115,7 +117,7 @@ export const Navbar = ({session} : NavbarProps) => {
       </Link>}
       <Link
         href="/"
-        className="text-primary-blue font-titan text-4xl w-max mx-auto text-primary-bue hover:scale-105 transition-transform"
+        className={`text-primary-blue text-4xl w-max mx-auto text-primary-bue hover:scale-105 transition-transform ${poppins.className} `}
       >
         LEVEL UP
       </Link>
