@@ -224,6 +224,11 @@ input[type="radio"] {
   transform: translateY(-0.075em);
   display: grid;
   place-content: center;
+
+  &:checked{
+    background-color: white;
+    border-color: rgb(94, 143, 199);
+  }
 }
 
 

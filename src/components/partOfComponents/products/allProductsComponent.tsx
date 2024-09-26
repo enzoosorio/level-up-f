@@ -1,3 +1,4 @@
+
 import { productos } from '@/utils/products'
 import Image from 'next/image'
 import React from 'react'

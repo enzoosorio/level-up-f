@@ -117,7 +117,7 @@ export const Navbar = ({session} : NavbarProps) => {
       </Link>}
       <Link
         href="/"
-        className={`text-primary-blue text-4xl w-max mx-auto text-primary-bue hover:scale-105 transition-transform ${poppins.className} `}
+        className={`text-primary-blue text-5xl w-max mx-auto text-primary-bue hover:scale-105 transition-transform mt-2 nikeFontForTitleCard`}
       >
         LEVEL UP
       </Link>

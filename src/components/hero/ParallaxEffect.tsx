@@ -23,7 +23,7 @@ export const ParallaxEffect = () => {
   >
   </div>
   <h4
-    className={`parallax home__title  ${poppins.className} absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 text-lg sm:text-xl md:text-2xl lg:text-3xl w-11/12 z-[999999] text-white bg-[rgba(0,0,0,0.35)] backdrop-blur-sm p-1`}
+    className={`parallax home__title  ${poppins.className} absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 text-lg sm:text-xl md:text-2xl lg:text-3xl w-11/12 z-[999999] text-white bg-[rgba(0,0,0,0.25)] rounded-lg backdrop-blur-md p-1`}
   >
     {`Comprando en Level Up, no solo mejoras tu estilo, sino también el planeta.
     Al prolongar la vida útil de la ropa, disminuyes emisiones de carbono,

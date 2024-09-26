@@ -18,10 +18,11 @@ export const AllFilters = () => {
   const [contentFilterAsObject, setContentFilterAsObject] = useState<AllFiltersProps | null>(null);
 
   const ALL_FILTERS = [
+    { name: "Tipo de producto", id: "ProductType" },
     { name: "Ordenar por", id: "OrderBy" },
     { name: "Rango de Precios", id: "PriceRange" },
+    { name: "Marcas", id: "Brands" },
     { name: "Género", id: "Gender" },
-    { name: "Tipo de producto", id: "ProductType" },
     { name: "Talla", id: "Tallaje" },
     { name: "Condición", id: "Condition" },
     { name: "TAGS", id: "Tags" },
@@ -42,7 +43,7 @@ export const AllFilters = () => {
       <div
         className={`filtersContainer overflow-y-auto ${roboto.className} absolute top-[-40px] right-0 z-50 ${
           allFilters ? 'right-0 z-[999999999999999999] block' : 'right-[-1000px] hidden md:block '
-        } max-w-96 w-56 bg-white text-primary-bue font-buenard h-screen p-4 flex flex-col items-center justify-start pt-10 gap-6 transition-all duration-300`}
+        } max-w-96 w-64 bg-white text-primary-bue font-buenard h-screen p-4 flex flex-col items-center justify-start pt-10 gap-6 transition-all duration-300`}
       >
         <h2 className={`text-xl`}>Filtros</h2>
         {contentFilterAsObject === null ? 

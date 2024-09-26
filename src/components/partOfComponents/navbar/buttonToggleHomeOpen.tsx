@@ -39,7 +39,7 @@ export const ButtonToggleHomeOpen = ({session} : ButtonToggleHomeOpenProps) => {
         <ul
         className={`fixed inset-0 w-full h-full bg-primary-orange overflow-hidden ${
           homeOpen ? "homeOpen" : "homeClose"
-        } flex flex-col items-center justify-center gap-16 z-[99999999] transition-all duration-[400ms] font-zenMaru text-2xl`}
+        } flex flex-col items-center justify-center gap-16 z-[99999999] transition-all duration-300 font-zenMaru text-2xl`}
       >
         <li className="hover:scale-105">
           <Link href={"/"} onClick={toggleHomeOpen}>

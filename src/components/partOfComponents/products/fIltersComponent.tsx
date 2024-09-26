@@ -3,6 +3,7 @@
 import { useOutsideClick } from '@/utils/clickOutside';
 import { useShowFilters } from '@/utils/useShowFilters';
 import React, { useState } from 'react'
+import { FILTERS } from './filters';
 
 const SOME_FILTERS = [
     {
@@ -51,7 +52,23 @@ const SOME_FILTERS = [
     },
   ];
 
+  interface Filters {
+    nameFilter: string;
+    subFilterMethods: string[];
+    subFilterMethodsObject: SubFilterMethodsObject[];
+  }
+
+  interface SubFilterMethodsObject {
+    subFilterName: string;
+    quantity: number;
+  }
+
 export const FiltersComponent = () => {
+
+  const twoFirstFilters = FILTERS.slice(0, 2);
+
+
+  const [filters, setFilters] = useState<Filters[]>([]);
 
     const showAllFilters = useShowFilters((state) => state.showAllFilters) 
     const [toggleDropdownvalue, setToggleDropdownvalue] = useState<number>(0);
@@ -69,7 +86,7 @@ export const FiltersComponent = () => {
 
   return (
     <ul className="flex flex-row justify-center items-center gap-4 bg-gray-300/60 rounded-lg p-3">
-          {SOME_FILTERS.map((filter, index) => (
+          {twoFirstFilters.map((filter, index) => (
             <li
               key={index}
               onClick={() => toggleDropdown(index + 1)}
@@ -106,26 +123,10 @@ export const FiltersComponent = () => {
                         name="checkSomeFilters"
                         className="bg-transparent border rounded-lg"
                       />
-                      <span className="text-lg">{subfilterMethod}</span>
+                      <span className="text-lg">{subfilterMethod.label}</span>
                     </li>
                   ))}
-                {filter?.subFilterMethodsObject &&
-                  filter.subFilterMethodsObject.map((subfilterMethod, idx) => (
-                    <li
-                      key={idx}
-                      className="text-lg cursor-pointer mb-6 hover:font-semibold flex flex-row items-center gap-2"
-                    >
-                      <input
-                        type="checkbox"
-                        name="checkSomeFilters"
-                        className="bg-transparent border rounded-lg"
-                      />
-                      <span className="flex flex-row items-center justify-center">
-                        {subfilterMethod.subFilterName} (
-                        {subfilterMethod.quantity})
-                      </span>
-                    </li>
-                  ))}
+               
               </ul>
             </li>
           ))}

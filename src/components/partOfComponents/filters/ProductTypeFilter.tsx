@@ -1,7 +1,9 @@
+'use client'
+
 import { poppins } from '@/utils/fonts'
-import React, {  useState } from 'react'
-
-
+import React, {  Suspense, useState } from 'react'
+import { ACCESORIES, ROPA, SNEAKERS } from '@/components/partOfComponents/products/filters'
+import { FilterCard } from './FilterCard'
 export const ProductTypeFilter = () => {
 
   const [activeDropdown, setActiveDropdown] = useState(-1);
@@ -14,52 +16,12 @@ export const ProductTypeFilter = () => {
   // se pueden elegir 2 o mas tipos de productos
   // dependiendo si se tiene el filtro activo de genero, se usaran algunas diferentes
   // categoria sin prendas no se muestra o se muestra pero no se podra clickear.
-  const clothingCategories =  [ 
-    'Casacas y Abrigos',
-      'Poleras',
-      'Chompas',
-      'Blazers',
-      'Polos',
-      'Tops',
-      'Vestidos',
-      'Pantalones',
-      'Jeans',
-      'Joggers y Cargo',
-      'Camisas',
-      'Blusas',
-      'Faldas',
-      'Ropa deportiva',
-      'Accesorios',
-      'Ropa Formal',
-      'Shorts',
-      'Shorts de baño'
-    ]
-
-    const sneakersCategories =  [ 
-      'Zapatillas urbanas',
-      'Zapatillas deportivas',
-      'Sandalias',
-      'Zapatos',
-      'Suecos',
-      ]
-
-      const accesoriesCategories =  [ 
-        'Medias',
-        'Boxers / Calzoncillos',
-        'Collares',
-        'Gorras',
-        'Pasamontañas',
-        'Relojes',
-        'Perfumes',
-        'Toallas',
-        'Pulseras',
-        ]
 
 
   return (
     <form className={` flex flex-col items-center w-full justify-center gap-4 ${poppins.className} text-black  `}>
             <h3 className='font-onest text-xl text-center w-max mx-auto '>
-              Género
+              Tipo de producto
             </h3>
             <div className='bg-slate-100/85 rounded-lg p-4 flex flex-col items-start justify-start gap-4 w-full'>
               <li 
@@ -78,17 +40,15 @@ export const ProductTypeFilter = () => {
                 </span>
               </li>
               {activeDropdown === 1 && (
-          <ul className="pl-4">
-            {clothingCategories.map((category, index) => (
-              <li key={index} className="py-2">
-                <div className='flex flex-row items-center gap-2 '>
-                  <input type='radio' id={`${category}_${index}`} name='productType' value={'male'} className='' />
-                  <label htmlFor={`${category}_${index}`}>{category}</label>
-                </div>
-                </li>
-            ))}
-          </ul>
-        )}
+               <Suspense fallback={<div>Loading...</div>}>
+                  <FilterCard 
+                  filterMethod={ROPA} 
+                  nameForInput={'productType'} 
+                  widthOfLi={'w-full'} 
+                  searchParamName={'productType'} />
+               </Suspense>
+         
+              )}
               <li 
               onClick={() => toggleDropdown(2)}
               className="flex flex-row items-center justify-between w-full gap-2 cursor-pointer bg-white px-1 rounded-sm">
@@ -105,17 +65,14 @@ export const ProductTypeFilter = () => {
                 </span>
               </li>
               {activeDropdown === 2 && (
-          <ul className="pl-4">
-            {sneakersCategories.map((category, index) => (
-              <li key={index} className="py-2">
-                <div className='flex flex-row items-center gap-2 '>
-                  <input type='radio' id={`${category}_${index}`} name='productType' value={'male'} className='' />
-                  <label htmlFor={`${category}_${index}`}>{category}</label>
-                </div>
-                </li>
-            ))}
-          </ul>
-        )}
+                <Suspense fallback={<div>Loading...</div>}>
+                  <FilterCard 
+                  filterMethod={SNEAKERS} 
+                  nameForInput={'productType'} 
+                  widthOfLi={'w-full'} 
+                  searchParamName={'productType'} />
+                </Suspense>
+              )}
               <li
               onClick={() => toggleDropdown(3)}
               className="flex flex-row items-center justify-between w-full gap-2 cursor-pointer bg-white px-1 rounded-sm">
@@ -132,17 +89,14 @@ export const ProductTypeFilter = () => {
                 </span>
               </li>
               {activeDropdown === 3 && (
-          <ul className="pl-4">
-            {accesoriesCategories.map((category, index) => (
-              <li key={index} className="py-2">
-                <div className='flex flex-row items-center gap-2 '>
-                  <input type='radio' id={`${category}_${index}`} name='productType' value={'male'} className='' />
-                  <label htmlFor={`${category}_${index}`}>{category}</label>
-                </div>
-                </li>
-            ))}
-          </ul>
-        )}
+                <Suspense fallback={<div>Loading...</div>}>
+                  <FilterCard 
+                  filterMethod={ACCESORIES} 
+                  nameForInput={'productType'} 
+                  widthOfLi={'w-full'} 
+                  searchParamName={'productType'} />
+                </Suspense>
+              )}
             </div>
     </form>
   )

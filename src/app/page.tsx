@@ -7,7 +7,7 @@ import { poppins, roboto } from "@/utils/fonts";
 
 export default function Home() {
   return (
-    <main className="mt-8 xl:max-w-[1200px] mx-auto relative">
+    <main className="mt-4 lg:mt-8 xl:max-w-[1200px] mx-auto relative">
       <header className="w-11/12 mx-auto">
         <h3 className={`text-center text-lg text-pretty ${roboto.className} `}>
         Oportunidad para darle una segunda oportunidad a las prendas que no han
