@@ -39,7 +39,7 @@ export default async function RootLayout({
       <SessionProvider session={session} >
     <html lang="en">
       <body
-        className={`relative ${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
+        className={`relative ${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden `}
       >
           <Navbar session={session}/>
         {children}

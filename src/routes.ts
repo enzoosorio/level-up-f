@@ -9,6 +9,6 @@ export const adminRoute = ['/admin']
 
 export const apiAuthPrefix = '/api/auth';
 
-export const DEFAULT_LOGIN_REDIRECT = '/'
+export const DEFAULT_LOGIN_REDIRECT = '/products'
 export const DEFAULT_SIGN_OUT_REDIRECT = '/login'
 export const DEFAUTL_NOT_ADMIN_REDIRECT = '/'

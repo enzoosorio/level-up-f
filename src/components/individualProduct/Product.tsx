@@ -95,7 +95,7 @@ export const IndividualProductComponent = ({session} : IndividualProductProps) =
     }, [])
   
     const message = `Hola! quisiera adquirir el polo ${
-      individualProduct.name+ " | " + "de la marca" + '' + individualProduct.brand
+      individualProduct.name + " " +"de la marca" + ' ' + individualProduct.brand
     } en la talla ${individualProduct.size}`;
   
     return (

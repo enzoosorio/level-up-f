@@ -3,8 +3,13 @@
 import React from 'react'
 
 export const Footer = () => {
+
+
+
   return (
-    <div className="mt-16 max-w-full bg-[#2F4858] flex flex-row items-center justify-center gap-2 font-buenard text-white p-4">
+    <div 
+    
+    className=" mt-16 max-w-full bg-[#2F4858] flex flex-row items-center justify-center gap-2 font-buenard text-white p-4">
     <p className="max-w-28  font-bold text-lg text-pretty  ">LEVEL UP 2024 © Todos los derechos reservados</p>
     <div className="flex flex-col flex-wrap items-center gap-8 w-48  space-y-2">
        <div className="flex flex-row items-center gap-4 justify-center">

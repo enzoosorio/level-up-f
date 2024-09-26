@@ -32,14 +32,14 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   session: { strategy: "jwt" },
   callbacks : {
     // elimine el user de los parametros de signIn
-    async signIn({account}){
+    async signIn({user,account}){
       
       if(account?.provider !== 'credentials') return true;
-    //   if(user.id){
-    //     const existingUser = await getUserById(user.id);
+      if(user.id){
+        const existingUser = await getUserById(user.id);
         
-    //     if(!existingUser?.emailVerified) return false;
-    //     }
+        if(!existingUser?.emailVerified) return false;
+        }
       return true;
     },
     async session({token, session}){

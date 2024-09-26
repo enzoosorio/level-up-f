@@ -52,6 +52,6 @@ export const LoginRegisterCard = ({title, subtitle ,titleButton, messageGoogle, 
       </button>}
     </div>
     {changeMessage && <Link href={changeURL} className='text-sm mx-auto text-center w-max underline decoration-dotted mt-1 '>{changeMessage}</Link>}
-</div>
+    </div>
   )
 }
