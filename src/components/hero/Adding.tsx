@@ -10,6 +10,7 @@ export const Adding = () => {
   <h3 className={`text-3xl text-primary-bue mb-6 ${poppins.className} `}>ACTIVACIÓN</h3>
   <div className="flex flex-col md:flex-row items-center justify-center gap-10">
     <CardForMessageWithLink
+      link={"/"}
       titleCard={` Es momento que dejes de lado las prendas que no fueron tu estilo del
         todo.`}
       secondaryText={`Iniciativa de venta de productos`}
@@ -18,6 +19,7 @@ export const Adding = () => {
       isAdding
     />
     <CardForMessageWithLink
+      link={"/sorteo"}
       titleCard={`¡Participa en el sorteo de una SHOE BOX, un pack CREP PROTECT x ADIDAS y de un polo H&M!`}
       secondaryText={`Mira los pasos a seguir en nuestro instagram @levelupstore19`}
       imgCard={SaveAndRecycle}

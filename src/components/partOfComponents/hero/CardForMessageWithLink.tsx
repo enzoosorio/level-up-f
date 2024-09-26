@@ -2,14 +2,16 @@ import React from 'react'
 import { type CardWithLink } from "@/types/CardWithLink";
 import Image from 'next/image';
 import { inter, poppins, roboto } from '@/utils/fonts';
+import Link from 'next/link';
 
 export const CardForMessageWithLink = ({
-  // link, 
+  link, 
   titleCard, secondaryText, imgCard, altImgCard, isAdding} : CardWithLink) => {
   return (
-    <div
-  className="group/newProducts w-full cursor-pointer relative p-3 border border-gray-400 shadow-xl shadow-gray-700/65 rounded-sm min-h-64 flex flex-col items-start justify-center gap-4 overflow-hidden transition-all"
->
+    <Link
+      href={link}
+      className="group/newProducts w-full cursor-pointer relative p-3 border border-gray-400 shadow-xl shadow-gray-700/65 rounded-sm min-h-64 flex flex-col items-start justify-center gap-4 overflow-hidden transition-all"
+    >
   <Image
     src={imgCard}
     alt={altImgCard}
@@ -19,6 +21,6 @@ export const CardForMessageWithLink = ({
   <p className={` text-left text-xl text-balance ${poppins.className} font-bold w-full bg-[rgba(255,255,255,0.05)] backdrop-blur-sm`}>
     {secondaryText}
   </p>
-</div>
+</Link>
   )
 }

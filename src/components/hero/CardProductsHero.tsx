@@ -9,6 +9,7 @@ export const CardProductsHero = () => {
   className="flex flex-col md:flex-row w-11/12 mt-12 mx-auto items-center gap-10"
 >
   <CardForMessageWithLink
+    link={"/products?condition=new"}
     titleCard={"PRODUCTOS NUEVOS"}
     secondaryText={`Descubre ropa y accesorios nuevos, con calidad de tienda y precios más
       bajos. Ideal para quienes buscan estrenar sin gastar de más`}
@@ -18,6 +19,7 @@ export const CardProductsHero = () => {
   />
 
   <CardForMessageWithLink
+    link={"/products?condition=perfect"}
     titleCard={"PRODUCTOS DE SEGUNDA MANO"}
     secondaryText={`Encuentra prendas únicas y en excelente estado, ¡a precios increíbles!`}
     imgCard={PoloSecondHandClothes}
