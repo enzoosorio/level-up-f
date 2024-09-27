@@ -149,7 +149,8 @@ export const IndividualProductComponent = ({session, individualProduct} : Indivi
         <h2 className="pl-2 w-full text-pretty text-2xl font-bold">
           {individualProduct?.name}
         </h2>
-        <p className="pl-2 w-full text-2xl text-pretty">{`Marca : ${individualProduct?.brand}`}</p>
+        <p className="pl-2 w-full text-2xl text-pretty">{`Marca: ${individualProduct?.brand}`}</p>
+        <p className="pl-2 w-full text-2xl  text-pretty">{`Talla: ${individualProduct?.size}`}</p>
         <p className="pl-2 w-full text-lg italic text-pretty break-words hyphens-auto text-left ">
           {`“${individualProduct?.description}“ `}
         </p>
@@ -216,11 +217,15 @@ export const IndividualProductComponent = ({session, individualProduct} : Indivi
         }
         
       </div>
-      <p
-        className={`absolute text-white bg-primary-green rounded-sm py-3 px-7 text-xl top-0 right-0`}
-      >
-        OFERTA
-      </p>
+      {individualProduct.itsOnSale && (
+            <p
+      
+            className={`absolute text-white bg-primary-green rounded-sm py-3 px-7 text-xl top-0 right-0`}
+          >
+            OFERTA
+          </p>
+          )}
+     
       <div
       ref={wrapperZoomPhotoRef}
         className="hidden zoomImage overflow-hidden z-50 absolute top-1/2 -translate-y-1/2 right-1/4 translate-x-2/4 w-[calc(50%-2rem)] h-[calc(100%-2rem)] bg-white border shadow-xl zoom"

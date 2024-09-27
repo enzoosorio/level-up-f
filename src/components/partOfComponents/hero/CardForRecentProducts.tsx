@@ -6,21 +6,28 @@ import { inter, roboto } from '@/utils/fonts';
 
 
 interface CardForRecentProductsProps { 
-  product : ProductReview,
-  key : number
+  key : number,
+  id : string,
+  name : string,
+  brand : string,
+  itsOnSale : boolean,
+  price : number,
+  discountedPrice : number,
+  mainImage : string,
+  imageAlt : string,
 }
 
-export const CardForRecentProducts = ({product, key} 
-    : CardForRecentProductsProps) => {
-      const {id,
-        name,
-        brand,
-        // state,
-        itsOnSale,
-        price,
-        discountedPrice,
-        imageUrl,
-        imageAlt} = product
+export const CardForRecentProducts = ({
+  id, 
+  name, 
+  brand, 
+  itsOnSale, 
+  price, 
+  discountedPrice, 
+  mainImage, 
+  imageAlt, 
+  key} : CardForRecentProductsProps) => {
+     
 
   return (
     <Link
@@ -29,7 +36,7 @@ export const CardForRecentProducts = ({product, key}
   className="group/CardRecentProduct relative shadow-xl cursor-pointer border border-gray-300/45 rounded-sm flex flex-col gap-8 items-center justify-center p-4"
     >
   <Image
-    src={imageUrl}
+    src={mainImage}
     alt={imageAlt}
     width={276}
     height={239}

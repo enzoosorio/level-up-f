@@ -11,7 +11,6 @@ import { DropdownMenuGroup } from "@radix-ui/react-dropdown-menu";
 import { Session } from "next-auth";
 import { ButtonToggleHomeOpen } from "./partOfComponents/navbar/buttonToggleHomeOpen";
 import { SignOutDropdownUser } from "./partOfComponents/navbar/signOutDropdownUser";
-import { poppins } from "@/utils/fonts";
 
 interface NavbarProps{
   session? : Session | null
@@ -104,17 +103,37 @@ export const Navbar = ({session} : NavbarProps) => {
       </DropdownMenu>
       </div>
     : 
-      <Link 
-      href={'/login'}
-      className="bg-primary-orange hidden md:block absolute top-0 right-10 w-max p-2 rounded-lg linkToLogin  ">
-        {/* SVG USER WITHOUT LOGIN */}
-        <svg width="24" height="24" viewBox="0 0 24 24" className="svgLinkToLogin">
-          <path
-            fill="#FFFFFF"
-            d="M7.5 6.5C7.5 8.981 9.519 11 12 11s4.5-2.019 4.5-4.5S14.481 2 12 2S7.5 4.019 7.5 6.5M20 21h1v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1z"
-          />
-        </svg>
-      </Link>}
+<div className={` relative md:absolute md:top-0 md:right-10 `}>
+    <DropdownMenu>
+        <DropdownMenuTrigger>
+        <div
+        className={` bg-primary-orange block md:absolute md:top-0 md:right-10 w-max p-2 rounded-lg logoutButton outline-none `}>
+          {/* SVG USER LOGGED IN CAT*/} 
+          <svg width="24" height="24" viewBox="0 0 24 24" className="svgLinkToLogin">
+                <path
+                  fill="#FFFFFF"
+                  d="M7.5 6.5C7.5 8.981 9.519 11 12 11s4.5-2.019 4.5-4.5S14.481 2 12 2S7.5 4.019 7.5 6.5M20 21h1v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1z"
+                />
+              </svg>
+        </div> 
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="absolute  md:top-4 left-[-95px] md:left-[-230px] bg-primary-orange w-48" >
+          <DropdownMenuLabel className="text-white whitespace-nowrap text-ellipsis overflow-x-hidden">Autenticación</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuGroup className="text-white">
+            <DropdownMenuItem className="hover:cursor-pointer">
+            <a 
+            href={'/login'}
+            className="">
+              Iniciar sesión
+            </a>
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
+      </div>
+      
+      }
       <Link
         href="/"
         className={`text-primary-blue text-5xl w-max mx-auto text-primary-bue hover:scale-105 transition-transform mt-2 nikeFontForTitleCard`}

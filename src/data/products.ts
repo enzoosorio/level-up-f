@@ -30,3 +30,19 @@ export const getIndividualProduct = async (id: string): Promise<ProductReviewWit
         return null;
     }
 };
+
+
+export const getLastProducts = async (limit: number): Promise<Product[]> => {
+    try {
+        const products = await db.product.findMany({
+            take: limit,
+            orderBy: {
+                createdAt: "desc",
+            },
+        });
+        return products;
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
+}

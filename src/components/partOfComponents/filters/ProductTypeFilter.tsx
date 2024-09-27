@@ -4,7 +4,13 @@ import { poppins } from '@/utils/fonts'
 import React, {  Suspense, useState } from 'react'
 import { ACCESORIES, ROPA, SNEAKERS } from '@/components/partOfComponents/products/filters'
 import { FilterCard } from './FilterCard'
-export const ProductTypeFilter = () => {
+import { CategoryEnum } from '@prisma/client'
+
+interface ProductTypeFilterProps{
+  existingCategories : Record<CategoryEnum, string[]> | null
+}
+
+export const ProductTypeFilter = ({existingCategories} : ProductTypeFilterProps) => {
 
   const [activeDropdown, setActiveDropdown] = useState(-1);
  
@@ -13,10 +19,7 @@ export const ProductTypeFilter = () => {
     setActiveDropdown(activeDropdown === index ? -1 : index);
   };
 
-  // se pueden elegir 2 o mas tipos de productos
-  // dependiendo si se tiene el filtro activo de genero, se usaran algunas diferentes
-  // categoria sin prendas no se muestra o se muestra pero no se podra clickear.
-
+  if(!existingCategories) return <div>Loading...</div>
 
   return (
     <form className={` flex flex-col items-center w-full justify-center gap-4 ${poppins.className} text-black  `}>
@@ -24,6 +27,7 @@ export const ProductTypeFilter = () => {
               Tipo de producto
             </h3>
             <div className='bg-slate-100/85 rounded-lg p-4 flex flex-col items-start justify-start gap-4 w-full'>
+             {existingCategories?.ROPA && 
               <li 
               onClick={() => toggleDropdown(1)}
               className="flex flex-row items-center justify-between w-full gap-2 cursor-pointer bg-white px-1 rounded-sm">
@@ -39,31 +43,34 @@ export const ProductTypeFilter = () => {
                   </svg>
                 </span>
               </li>
+              }
               {activeDropdown === 1 && (
                <Suspense fallback={<div>Loading...</div>}>
                   <FilterCard 
-                  filterMethod={ROPA} 
+                  filterMethod={existingCategories?.ROPA} 
                   nameForInput={'productType'} 
                   widthOfLi={'w-full'} 
                   searchParamName={'productType'} />
                </Suspense>
          
               )}
-              <li 
-              onClick={() => toggleDropdown(2)}
-              className="flex flex-row items-center justify-between w-full gap-2 cursor-pointer bg-white px-1 rounded-sm">
-                <p>Zapatillas</p>
-                <span>
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 32 32"
-                    className={`${activeDropdown === 2 ? '-rotate-90' : 'rotate-0'} transition-transform`}
-                  >
-                    <path fill="#000000" d="M16 22L6 12l1.4-1.4l8.6 8.6l8.6-8.6L26 12z" />
-                  </svg>
-                </span>
-              </li>
+            {existingCategories?.ZAPATILLAS &&
+            <li 
+            onClick={() => toggleDropdown(2)}
+            className="flex flex-row items-center justify-between w-full gap-2 cursor-pointer bg-white px-1 rounded-sm">
+              <p>Zapatillas</p>
+              <span>
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 32 32"
+                  className={`${activeDropdown === 2 ? '-rotate-90' : 'rotate-0'} transition-transform`}
+                >
+                  <path fill="#000000" d="M16 22L6 12l1.4-1.4l8.6 8.6l8.6-8.6L26 12z" />
+                </svg>
+              </span>
+            </li>
+            }
               {activeDropdown === 2 && (
                 <Suspense fallback={<div>Loading...</div>}>
                   <FilterCard 
@@ -73,6 +80,7 @@ export const ProductTypeFilter = () => {
                   searchParamName={'productType'} />
                 </Suspense>
               )}
+              {existingCategories?.ACCESORIES &&
               <li
               onClick={() => toggleDropdown(3)}
               className="flex flex-row items-center justify-between w-full gap-2 cursor-pointer bg-white px-1 rounded-sm">
@@ -88,6 +96,7 @@ export const ProductTypeFilter = () => {
                   </svg>
                 </span>
               </li>
+              }
               {activeDropdown === 3 && (
                 <Suspense fallback={<div>Loading...</div>}>
                   <FilterCard 

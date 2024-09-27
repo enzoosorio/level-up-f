@@ -22,10 +22,6 @@ export const productos : ProductReview[] = [
         "seller": "Enzo Osorio",
         "referenceURL" : "https://www.adidas.pe/polo-adicolor-seleccion-peruana/IU2741.html",
         "returnPolicy": "Devoluciones aceptadas dentro de 15 días.",
-        "imageUrl": "/hero/sample/polo1.png",
-        "image1": "/sampleIndividualProduct/polera-adidas-vino-1.jpeg",
-        "image2": "/sampleIndividualProduct/polera-adidas-vino-2.jpeg",
-        "image3": "/sampleIndividualProduct/polera-adidas-vino-3.jpeg",
         "imageAlt": "Camiseta Negra Nike"
     },
     {
@@ -48,10 +44,6 @@ export const productos : ProductReview[] = [
         "discountedPrice": "0",
         "seller": "Enzo Osorio",
         "returnPolicy": "Devoluciones aceptadas dentro de 15 días.",
-        "imageUrl": "/hero/sample/Polo2.png",
-        "image1": "/hero/sample/Polo2.png",
-        "image2": "/hero/sample/Polo2.png",
-        "image3": "/hero/sample/Polo2.png",
         "imageAlt": "Adidas stan smith"
     },
     {
@@ -74,10 +66,6 @@ export const productos : ProductReview[] = [
         "discountedPrice": "40.00",
         "seller": "Enzo Osorio",
         "returnPolicy": "Devoluciones aceptadas dentro de 15 días.",
-       "imageUrl": "/sampleIndividualProduct/polera-hunington-1.jpeg",
-        "image1": "/sampleIndividualProduct/polera-hunington-1.jpeg",
-        "image2": "/sampleIndividualProduct/polera-hunington-2.jpeg",
-        "image3": "/sampleIndividualProduct/polera-hunington-3.jpeg",
         "imageAlt": "Polo adidas"
     },
     {
@@ -100,10 +88,6 @@ export const productos : ProductReview[] = [
         "discountedPrice": "100.00",
         "seller": "Enzo Osorio",
         "returnPolicy": "Devoluciones aceptadas dentro de 15 días.",
-        "imageUrl": "/hero/sample/Polo3.png",
-        "image1": "/hero/sample/Polo3.png",
-        "image2": "/hero/sample/Polo3.png",
-        "image3": "/hero/sample/Polo3.png",
         "imageAlt": "Zapatillas supernova"
     }
 ];

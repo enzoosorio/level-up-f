@@ -1,6 +1,6 @@
 
 import { db } from "@/lib/db"
-import { Condition , Gender} from "@prisma/client"
+import { CategoryEnum, Condition , Gender} from "@prisma/client"
 import { getMinAndMaxProductsPrice } from "../product-price"
 
 export const getProductsByCondition = async(condition : Condition) => {
@@ -34,21 +34,8 @@ export const getProductsByGender = async (gender : Gender) => {
     }
 }
 
-export const getCategoriesOfProducts  = async () => {
-    try {
-        const products = await db.product.findMany({
-           select : {
-                category : true
-           }
-        })
-        return products
-        
-    } catch (error) {
-        return console.log(error)
-    }
-}
 
-export const getProductByCategory  = async (category : string) => {
+export const getProductByCategory  = async (category : CategoryEnum) => {
     try {
         const products = await db.product.findMany({
            where : {

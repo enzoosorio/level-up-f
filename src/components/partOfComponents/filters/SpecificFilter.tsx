@@ -1,4 +1,4 @@
-import { Suspense } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { PriceFilterOfInternet } from './PriceFilter'
 import { GenderFilter } from './GenderFilter'
 import { ProductTypeFilter } from './ProductTypeFilter'
@@ -7,16 +7,33 @@ import { ConditionFilter } from './ConditionFilter'
 import { TagsFilter } from './TagsFilter'
 import { OrderByFilter } from './OrderByFilter'
 import { MarcaFilter } from './MarcaFilter'
-import { getCategoriesOfProducts } from '@/data/filters/filters'
+import {  getSubCategoriesOfProducts } from '@/data/filters/FOR-filters'
+import { CategoryEnum } from '@prisma/client'
 
 
 interface SpecificFilterProps{
     id : string
 }
 
-export const SpecificFilter = async({id} : SpecificFilterProps) => {
+export const SpecificFilter = ({id} : SpecificFilterProps) => {
 
-  const existingCategories = await getCategoriesOfProducts()
+  const [existingCategories, setExistingCategories] = useState<Record<CategoryEnum, string[]> | null>(null)
+
+  useEffect(() => {
+    const existingCategories = async() => {
+      const subcategories = await getSubCategoriesOfProducts()
+    
+      if(!subcategories){
+        return
+      }
+      setExistingCategories(subcategories)
+    }
+
+    existingCategories()
+
+  }, [])
+
+
 
   return (
     <>
@@ -28,7 +45,7 @@ export const SpecificFilter = async({id} : SpecificFilterProps) => {
     </Suspense>
     : 
     id === 'Gender' ? <GenderFilter/> : 
-    id === 'ProductType' ? <ProductTypeFilter/> : 
+    id === 'ProductType' ? <ProductTypeFilter existingCategories={existingCategories}/> :
     id === 'Tallaje' ? <TallajeFilter/> : 
     id === 'Condition' ? <ConditionFilter/> :
     id === 'Tags' ? <TagsFilter/> : 
