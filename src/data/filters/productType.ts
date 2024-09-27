@@ -1,6 +1,7 @@
 import { db } from "@/lib/db"
+import { CategoryEnum } from "@prisma/client"
 
-export const getProductByCategory  = async (category : string) => {
+export const getProductByCategory  = async (category : CategoryEnum) => {
     try {
         const products = await db.product.findMany({
            where : {
