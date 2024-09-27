@@ -1,13 +1,18 @@
 
 import { productos } from '@/utils/products'
+import { Product } from '@prisma/client'
 import Image from 'next/image'
 import React from 'react'
 
-export const AllProductsComponent = () => {
+interface AllProductsComponentProps{
+    products : Product[]
+}
+
+export const AllProductsComponent = ({products} : AllProductsComponentProps) => {
   return (
     
         <>
-        {productos.map((tshirt, index) => (
+        {products.map((tshirt, index) => (
         <a
           key={tshirt.id}
           href={`/products/${tshirt.id}`}
@@ -19,7 +24,7 @@ export const AllProductsComponent = () => {
         >
           <picture className="flex flex-col items-center justify-center">
             <Image
-              src={tshirt.imageUrl}
+              src={tshirt.mainImage}
               alt={tshirt.imageAlt}
               width={563}
               height={845}

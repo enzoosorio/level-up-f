@@ -7,13 +7,17 @@ import { ConditionFilter } from './ConditionFilter'
 import { TagsFilter } from './TagsFilter'
 import { OrderByFilter } from './OrderByFilter'
 import { MarcaFilter } from './MarcaFilter'
+import { getCategoriesOfProducts } from '@/data/filters/filters'
 
 
 interface SpecificFilterProps{
     id : string
 }
 
-export const SpecificFilter = ({id} : SpecificFilterProps) => {
+export const SpecificFilter = async({id} : SpecificFilterProps) => {
+
+  const existingCategories = await getCategoriesOfProducts()
+
   return (
     <>
     {

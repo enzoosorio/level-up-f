@@ -4,14 +4,18 @@ import React, { useEffect, useState, useTransition } from 'react'
 import { poppins } from '@/utils/fonts'
 import Slider from 'react-slider'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { getMinAndMaxProductsPrice } from '@/data/product-price';
 
 const MIN = 9;
 const MAX = 499;
 
 export const PriceFilterOfInternet = () => {
+  
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
+
+  const [minMax, setMinMax] = useState({ minPrice: 0, maxPrice: 0 });
 
   const minSearchParam = searchParams.get('minPrice');
   const maxSearchParam = searchParams.get('maxPrice');
@@ -23,15 +27,43 @@ export const PriceFilterOfInternet = () => {
 
   const [isPending, startTransition] = useTransition();
 
+
+  useEffect(() => {
+
+    const fetchMinMaxPrices = async () => {
+      try {
+        const data = await getMinAndMaxProductsPrice()
+
+        if(!data.maxPrice || !data.minPrice) {
+          return console.error('No se pudo obtener el rango de precios.');
+        }
+
+        setMinMax({
+          minPrice: data?.minPrice,
+          maxPrice: data.maxPrice,
+        });
+        setValues([
+          minSearchParam ? parseInt(minSearchParam) : data.minPrice,
+          maxSearchParam ? parseInt(maxSearchParam) : data.maxPrice
+        ]);
+      } catch (error) {
+        console.error('Error fetching price range:', error);
+      }
+    };
+
+    fetchMinMaxPrices();
+
+  }, [minSearchParam, maxSearchParam]);
+
   // Sync the state with the URL parameters when they change
   useEffect(() => {
-    const newMin = minSearchParam ? parseInt(minSearchParam) : MIN;
-    const newMax = maxSearchParam ? parseInt(maxSearchParam) : MAX;
+    const newMin = minSearchParam ? parseInt(minSearchParam) : minMax.minPrice;
+    const newMax = maxSearchParam ? parseInt(maxSearchParam) : minMax.maxPrice;
     
     if (values[0] !== newMin || values[1] !== newMax) {
       setValues([newMin, newMax]);
     }
-  }, [minSearchParam, maxSearchParam]);
+  }, [minSearchParam, maxSearchParam, minMax]);
 
   // Update both min and max values together in one useEffect
   useEffect(() => {
@@ -55,6 +87,10 @@ export const PriceFilterOfInternet = () => {
       replace(`${pathname}?${params.toString()}`);
     });
   }, [values, pathname, replace, searchParams]);
+
+  if (!minMax.minPrice && !minMax.maxPrice) {
+    return <div>Loading...</div>; // Mostrar algo mientras se cargan los precios
+  }
 
   return (
     <div className={`d-flex ${poppins.className} text-black mx-auto mt-6`}>

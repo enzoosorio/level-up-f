@@ -1,3 +1,4 @@
+import { Product } from "@prisma/client";
 
 export interface ProductReview {
     id: string;
@@ -21,10 +22,21 @@ export interface ProductReview {
     referenceURL? : string;
     seller? : string;
     returnPolicy? : string;
-    imageUrl: string ;
-    image1? : string  ;
-    image2? : string ;
-    image3?:  string ;
     soldOut? : boolean;
     imageAlt: string;
   }
+
+
+  type Image = {
+    id: string;
+    url: string;
+    productId: string;
+};
+
+type ProductWithImages = Product & {
+    images: Image[];
+};
+
+interface ProductReviewWithImages extends Product {
+    images: Image[]; 
+}

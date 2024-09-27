@@ -76,18 +76,18 @@ model VerificationToken {
 model Product {
   id              String     @id @default(cuid())
   name            String     @map("name_product")
-  brand           String     @map("small_name_product")
+  brand           String
   description     String
   category        String?
   gender          Gender?
-  state           String?
+  state           Float?
   condition       Condition?
-  stockQuantity   String
+  stockQuantity   Int        @default(1)
   size            String
   color           String?
   material        String?
   shippingInfo    String?
-  views           Int
+  views           Int?       @default(0)
   itsOnSale       Boolean
   price           Float
   discountedPrice Float
@@ -97,20 +97,18 @@ model Product {
   returnPolicy    String?
   mainImage       String
   images          Image[]    @relation("ProductImages")
-  createdAt       DateTime   @default(now())
-  soldOut         Boolean
   imageAlt        String
+  soldOut         Boolean    @default(false)
+  createdAt       DateTime   @default(now())
 
   @@map("products")
 }
 
 model Image {
-  id        String    @id @default(cuid())
+  id        String  @id @default(cuid())
   url       String
-  altText   String?
-  type      ImageType
-  productId String    @map("product_id")
-  product   Product   @relation("ProductImages", fields: [productId], references: [id], onDelete: Cascade)
+  productId String  @map("product_id")
+  product   Product @relation("ProductImages", fields: [productId], references: [id], onDelete: Cascade)
 
   @@map("images")
 }
@@ -122,7 +120,7 @@ enum ImageType {
 
 enum Condition {
   NEW
-  PERFECT_STATE
+  PERFECT
   SEMI_NEW
   USED
 }
@@ -130,6 +128,7 @@ enum Condition {
 enum Gender {
   MALE
   FEMALE
+  UNISEX
 }
 
 model Authenticator {

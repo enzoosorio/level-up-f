@@ -1,7 +1,6 @@
 'use client'
 
 import React, { RefObject, useEffect, useRef } from 'react'
-import { productos } from '@/utils/products'
 import { useParams } from 'next/navigation'
 import { roboto } from '@/utils/fonts'
 import Link from 'next/link'
@@ -16,12 +15,15 @@ import {
     DialogTitle,
     DialogTrigger,
   } from "@/components/ui/dialog"
+import { ProductReviewWithImages, ProductWithImages } from '@/types/ProductReview'
+import { Product } from '@prisma/client'
 
 interface IndividualProductProps{
   session? : Session | null
+  individualProduct : ProductReviewWithImages
 }
 
-export const IndividualProductComponent = ({session} : IndividualProductProps) => {
+export const IndividualProductComponent = ({session, individualProduct} : IndividualProductProps) => {
     const params = useParams<{id : string}>()
     const {id} = params
     
@@ -30,15 +32,8 @@ export const IndividualProductComponent = ({session} : IndividualProductProps) =
     const zoomedImageRef : RefObject<HTMLImageElement> = useRef(null)
     const wrapperMainPhotoRef : RefObject<HTMLPictureElement> = useRef(null)
     const wrapperZoomPhotoRef : RefObject<HTMLDivElement> = useRef(null)
-    
-    // esto se debe mejorar... Se debe hacer con una peticion await
-    const individualProduct =  productos.find(producto => id === producto.id)
-    let discountedPrice = 0;
   
-    if(individualProduct?.discountedPrice) 
-      discountedPrice = parseFloat(individualProduct?.discountedPrice);
-  
-    if(!individualProduct?.image1 || !individualProduct?.image2 || !individualProduct.image3 || !individualProduct.imageUrl){
+    if(!individualProduct.images[0] || !individualProduct.images[1] || !individualProduct.images[2] ){
       return <p>No existen las imagenes del producto.</p>
     }
   
@@ -109,7 +104,7 @@ export const IndividualProductComponent = ({session} : IndividualProductProps) =
         className="flex flex-row md:flex-col gap-4 items-center md:mr-10  mx-auto md:mx-0 md:pt-12  lg:pt-0">
           <li className="w-max cursor-pointer rounded-sm">
             <img
-              src={individualProduct?.image1}
+              src={individualProduct?.images[0].url}
               alt={individualProduct?.imageAlt}
               width={50}
               className={"productImage"}
@@ -117,7 +112,7 @@ export const IndividualProductComponent = ({session} : IndividualProductProps) =
           </li>
           <li className="product2 w-max cursor-pointer rounded-sm">
             <img
-              src={individualProduct?.image2}
+              src={individualProduct?.images[1].url}
               alt={individualProduct?.imageAlt}
               width={50}
               className={"productImage"}
@@ -125,7 +120,7 @@ export const IndividualProductComponent = ({session} : IndividualProductProps) =
           </li>
           <li className="product3 w-max cursor-pointer rounded-sm">
             <img
-              src={individualProduct?.image3}
+              src={individualProduct?.images[2].url}
               alt={individualProduct?.imageAlt}
               width={50}
               className={"productImage"}
@@ -139,7 +134,7 @@ export const IndividualProductComponent = ({session} : IndividualProductProps) =
         >
           <img
           ref={imageMainPhotoRef}
-            src={individualProduct?.image1}
+            src={individualProduct?.images[0].url}
             alt={"Polera polo"}
             width={400}
             className={"md:hover:cursor-zoom-in group/mainPicture rounded-sm md:rounded-none w-[300px] md:w-[400px] "}
@@ -169,8 +164,8 @@ export const IndividualProductComponent = ({session} : IndividualProductProps) =
             >{"Juan Perez"}</span> 
         </p>
         <p className="pl-2 w-full text-xl flex flex-row items-center"> 
-          <span className={`${discountedPrice ? 'line-through stroke-red-600 line-through-red' : 'text-2xl font-bold'} mr-4`}>S/{individualProduct?.price} </span> 
-        {discountedPrice !== 0 && <span className='text-primary-green font-bold text-2xl'>{`S/${individualProduct?.discountedPrice}`}</span>}
+          <span className={`${individualProduct.discountedPrice ? 'line-through stroke-red-600 line-through-red' : 'text-2xl font-bold'} mr-4`}>S/{individualProduct?.price} </span> 
+        {individualProduct.discountedPrice !== 0 && <span className='text-primary-green font-bold text-2xl'>{`S/${individualProduct?.discountedPrice}`}</span>}
          </p>
          {!session ? 
          <div className='flex flex-row items-center gap-4'>
@@ -232,7 +227,7 @@ export const IndividualProductComponent = ({session} : IndividualProductProps) =
       >
         <img
         ref={zoomedImageRef}
-          src={individualProduct?.image1}
+          src={individualProduct?.images[0].url}
           alt={`Zoom de la imagen ${individualProduct?.imageAlt}`}
           className="zoomed-image w-full absolute object-cover left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none"
         />
