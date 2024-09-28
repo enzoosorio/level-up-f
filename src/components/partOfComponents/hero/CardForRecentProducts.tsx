@@ -12,7 +12,7 @@ interface CardForRecentProductsProps {
   brand : string,
   itsOnSale : boolean,
   price : number,
-  discountedPrice : number,
+  discountedPrice : number | null,
   mainImage : string,
   imageAlt : string,
 }

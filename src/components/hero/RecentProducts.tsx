@@ -1,6 +1,5 @@
 import React from 'react'
 import { CardForRecentProducts } from '../partOfComponents/hero/CardForRecentProducts'
-import { productos } from '@/utils/products';
 import { poppins } from '@/utils/fonts';
 import { getLastProducts } from '@/data/products';
 
@@ -21,7 +20,7 @@ export const RecentProducts = async() => {
             brand={product.brand}
             itsOnSale={product.itsOnSale}
             price={product.price}
-            discountedPrice={product.discountedPrice}
+            discountedPrice={product.discountedPrice }
             mainImage={product.mainImage}
             imageAlt={product.imageAlt}
             />
