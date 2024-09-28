@@ -4,71 +4,28 @@ import { useOutsideClick } from '@/utils/clickOutside';
 import { useShowFilters } from '@/utils/useShowFilters';
 import React, { useState } from 'react'
 import { FILTERS } from './filters';
+import { useSearchParams } from 'next/navigation';
 
-const SOME_FILTERS = [
-    {
-      nameFilter: "ORDENAR POR",
-      subFilterMethods: [
-        "Nombre, creciente",
-        "Precios más bajos",
-        "Precios más altos",
-        "Más reciente",
-        "Relevancia",
-        "Nombre, decreciente",
-      ],
-    },
-    {
-      nameFilter: "TIPO DE PRODUCTO",
-      subFilterMethodsObject: [
-        {
-          subFilterName: "Casaca",
-          quantity: 81,
-        },
-        {
-          subFilterName: "Camisa",
-          quantity: 24,
-        },
-        {
-          subFilterName: "Polo",
-          quantity: 14,
-        },
-        {
-          subFilterName: "Pantalon",
-          quantity: 63,
-        },
-        {
-          subFilterName: "Blazer",
-          quantity: 34,
-        },
-        {
-          subFilterName: "Zapatos",
-          quantity: 12,
-        },
-        {
-          subFilterName: "Zapatillas",
-          quantity: 81,
-        },
-      ],
-    },
-  ];
 
-  interface Filters {
-    nameFilter: string;
-    subFilterMethods: string[];
-    subFilterMethodsObject: SubFilterMethodsObject[];
-  }
+  // interface Filters {
+  //   nameFilter: string;
+  //   subFilterMethods: string[];
+  //   subFilterMethodsObject: SubFilterMethodsObject[];
+  // }
 
-  interface SubFilterMethodsObject {
-    subFilterName: string;
-    quantity: number;
-  }
+  // interface SubFilterMethodsObject {
+  //   subFilterName: string;
+  //   quantity: number;
+  // }
 
 export const FiltersComponent = () => {
 
   const twoFirstFilters = FILTERS.slice(0, 2);
+  const [filters, setFilters] = useState<string[]>([]);
 
+  const searchParams = useSearchParams();
 
-  const [filters, setFilters] = useState<Filters[]>([]);
+  // const [filters, setFilters] = useState<Filters[]>([]);
 
     const showAllFilters = useShowFilters((state) => state.showAllFilters) 
     const [toggleDropdownvalue, setToggleDropdownvalue] = useState<number>(0);

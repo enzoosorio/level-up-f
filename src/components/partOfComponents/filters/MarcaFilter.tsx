@@ -4,7 +4,14 @@ import { MARCAS } from '../products/filters'
 import { FilterCard } from './FilterCard'
 import { Suspense } from 'react'
 
-export const MarcaFilter = () => {
+interface MarcaFilterProps{
+  existingBrands : string[] | null
+}
+
+export const MarcaFilter = ({existingBrands} : MarcaFilterProps) => {
+
+  if(!existingBrands) return <div>Loading...</div>
+  
   return (
     <form className={` flex flex-col items-center w-full justify-center gap-4 ${poppins.className} text-black  `}>
     <h3 className='font-onest text-xl text-center w-max mx-auto leading-relaxed '>
@@ -12,7 +19,7 @@ export const MarcaFilter = () => {
     </h3>
     <Suspense fallback={<div>Loading...</div>}>
       <FilterCard 
-      filterMethod={MARCAS} 
+      filterMethod={existingBrands} 
       nameForInput={'brand'} 
       widthOfLi={'w-40'} 
       searchParamName={'brand'} 

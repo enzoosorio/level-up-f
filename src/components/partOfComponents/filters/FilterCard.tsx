@@ -1,10 +1,11 @@
 'use client'
 
+import { Condition } from '@prisma/client';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { useEffect, useTransition } from 'react'
 
 interface FilterCardProps{
-    filterMethod : Record<string, string>[] | string[],
+    filterMethod : Record<string, string>[] | string[] | Condition[] 
     nameForInput : string,
     widthOfLi : string,
     searchParamName : string

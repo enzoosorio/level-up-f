@@ -52,7 +52,7 @@ export const AllFilters = () => {
           {ALL_FILTERS.map((filter) => (
             <li
               onClick={() => {setContentFilterAsObject({id : filter.id, name : filter.name})}}
-              key={filter.id} // Agrega una key para evitar advertencias en la consola
+              key={filter.id}
               id={filter.id}
 
               className="group/liFilter filterItem w-full flex flex-row items-center justify-between gap-8 cursor-pointer"

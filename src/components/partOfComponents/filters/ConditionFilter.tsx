@@ -2,8 +2,15 @@ import { poppins } from '@/utils/fonts'
 import { CONDITION } from '../products/filters'
 import { FilterCard } from './FilterCard'
 import { Suspense } from 'react'
+import { Condition } from '@prisma/client'
 
-export const ConditionFilter = () => {
+interface ConditionFilterProps{
+  existingConditions : Condition[] | null
+}
+
+export const ConditionFilter = ({ existingConditions } : ConditionFilterProps) => {
+
+  if(!existingConditions) return <div>Loading...</div>
 
   return (
     <form className={` flex flex-col items-center w-full justify-center gap-4 ${poppins.className} text-black  `}>
@@ -12,7 +19,7 @@ export const ConditionFilter = () => {
     </h3>
     <Suspense fallback={<div>Loading...</div>}>
       <FilterCard 
-      filterMethod={CONDITION}
+      filterMethod={existingConditions}
       nameForInput='condition'
       widthOfLi='w-36'
       searchParamName='condition' />

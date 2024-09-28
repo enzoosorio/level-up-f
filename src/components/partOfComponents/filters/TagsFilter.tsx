@@ -3,7 +3,13 @@ import { TAGS } from '../products/filters'
 import { FilterCard } from './FilterCard'
 import { Suspense } from 'react'
 
-export const TagsFilter = () => {
+interface TagsFilterProps{
+  existingTags : string[] | null
+}
+
+export const TagsFilter = ({existingTags} : TagsFilterProps) => {
+  
+  if(!existingTags) return <div>Loading...</div>
 
   return (
     <form className={` flex flex-col items-center w-full justify-center gap-4 ${poppins.className} text-black  `}>
@@ -12,7 +18,7 @@ export const TagsFilter = () => {
     </h3> 
     <Suspense fallback={<div>Loading...</div>}>
       <FilterCard 
-      filterMethod={TAGS} 
+      filterMethod={existingTags} 
       nameForInput={'tag'} 
       widthOfLi={'w-40'}  
       searchParamName={'tag'} 

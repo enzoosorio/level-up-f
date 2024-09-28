@@ -1,4 +1,4 @@
-import { poppins } from '@/utils/fonts'
+import { inter, poppins } from '@/utils/fonts'
 import React, { Suspense } from 'react'
 import { SIZES } from '../products/filters'
 import { FilterCard } from './FilterCard'
@@ -7,7 +7,13 @@ import { FilterCard } from './FilterCard'
 // bloquear tallas inexistentes (si no tengo ropa de talla S, no se podra elegir talla S)
 // se puede elegir 2 o mas tallas a la vez
 
-export const TallajeFilter = () => {
+interface TallajeFilterProps{
+  existingSizings : string[] | null
+}
+
+export const TallajeFilter = ({existingSizings} : TallajeFilterProps) => {
+
+  if(!existingSizings) return <div>Loading...</div>
 
   return (
     <form className={` flex flex-col items-center w-full justify-center gap-4 ${poppins.className} text-black  `}>
@@ -16,7 +22,7 @@ export const TallajeFilter = () => {
     </h3>
     <Suspense fallback={<div>Loading...</div>}>
       <FilterCard
-      filterMethod={SIZES}
+      filterMethod={existingSizings}
       nameForInput={'sizing'}
       widthOfLi={'w-16'}
       searchParamName={'sizing'}

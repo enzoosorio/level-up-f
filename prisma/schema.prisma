@@ -74,33 +74,34 @@ model VerificationToken {
 }
 
 model Product {
-  id              String        @id @default(cuid())
-  name            String        @map("name_product")
+  id              String       @id @default(cuid())
+  name            String       @map("name_product")
   brand           String
   description     String
-  category        CategoryEnum?
-  subcategory     String?
-  gender          Gender?
-  state           Float?
-  condition       Condition?
-  stockQuantity   Int           @default(1)
+  category        CategoryEnum
+  subcategory     String
+  gender          Gender
+  state           Float
+  condition       Condition
+  stockQuantity   Int          @default(1)
   size            String
   color           String?
   material        String?
   shippingInfo    String?
-  views           Int?          @default(0)
+  views           Int          @default(0)
   itsOnSale       Boolean
   price           Float
-  discountedPrice Float
+  discountedPrice Float?
   referenceURL    String?
   sellerId        String
-  seller          User          @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  seller          User         @relation(fields: [sellerId], references: [id], onDelete: Cascade)
   returnPolicy    String?
   mainImage       String
-  images          Image[]       @relation("ProductImages")
+  images          Image[]      @relation("ProductImages")
   imageAlt        String
-  soldOut         Boolean       @default(false)
-  createdAt       DateTime      @default(now())
+  soldOut         Boolean      @default(false)
+  tags            String[]
+  createdAt       DateTime     @default(now())
 
   @@map("products")
 }
